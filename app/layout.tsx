@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Epilogue, Outfit, Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const epilogue = Epilogue({ subsets: ['latin'], variable: '--font-epilogue', weight: ['600', '700', '800'] })
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', weight: ['400', '500', '600'] })
@@ -9,6 +11,9 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 export const metadata: Metadata = {
   title: 'SwiftBite',
   description: 'Fast. Fresh. Tasty.',
+  icons: {
+    icon: '/logo.jpeg',
+  },
 }
 
 export default function RootLayout({
@@ -23,7 +28,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className={`${epilogue.variable} ${outfit.variable} ${spaceGrotesk.variable} bg-surface font-body-md text-body-md text-on-surface`}>
-        {children}
+        <Header /><main className="bg-surface">{children}</main><Footer />
       </body>
     </html>
   )
