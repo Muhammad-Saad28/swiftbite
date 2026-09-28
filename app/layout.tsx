@@ -4,9 +4,9 @@ import './globals.css'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const epilogue = Epilogue({ subsets: ['latin'], variable: '--font-epilogue', weight: ['600', '700', '800'] })
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', weight: ['400', '500', '600'] })
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk', weight: ['600', '700'] })
+const epilogue = Epilogue({ subsets: ['latin'], variable: '--font-epilogue' })
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' })
 
 export const metadata: Metadata = {
   title: 'SwiftBite',
