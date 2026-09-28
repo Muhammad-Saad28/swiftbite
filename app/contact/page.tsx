@@ -13,7 +13,7 @@ export default function Page() {
           <form className="flex flex-col gap-4">
             <input type="text" placeholder="Your Name" className="w-full bg-surface-container p-4 rounded-xl text-on-surface border border-transparent focus:border-primary-container outline-none transition-colors" />
             <input type="email" placeholder="Your Email" className="w-full bg-surface-container p-4 rounded-xl text-on-surface border border-transparent focus:border-primary-container outline-none transition-colors" />
-            <textarea placeholder="What's up?" rows="5" className="w-full bg-surface-container p-4 rounded-xl text-on-surface border border-transparent focus:border-primary-container outline-none transition-colors resize-none"></textarea>
+            <textarea placeholder="What's up?" rows={5} className="w-full bg-surface-container p-4 rounded-xl text-on-surface border border-transparent focus:border-primary-container outline-none transition-colors resize-none"></textarea>
             <button className="w-full py-4 bg-primary-container text-on-primary rounded-xl font-label-lg mt-2 hover:bg-secondary-container transition-transform active:scale-95">Send Transmission</button>
           </form>
         </motion.div>
