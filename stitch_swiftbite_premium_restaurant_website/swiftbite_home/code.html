@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700;800&amp;family=Outfit:wght@400;500;600&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#e2e2e2", "inverse-on-surface": "#313030", "inverse-surface": "#e5e2e1", "primary-fixed-dim": "#ffba20", "on-tertiary-container": "#505252", "surface-container-low": "#1c1b1b", "outline-variant": "#514532", "inverse-primary": "#7c5800", "on-secondary": "#3f2e00", "primary-container": "#ffb800", "on-primary-fixed-variant": "#5e4200", "on-secondary-fixed-variant": "#5a4300", "surface": "#131313", "on-tertiary": "#2f3131", "tertiary-container": "#c4c5c5", "outline": "#9e8f78", "on-background": "#e5e2e1", "surface-container-lowest": "#0e0e0e", "on-secondary-fixed": "#251a00", "surface-container": "#201f1f", "surface-container-highest": "#353534", "tertiary": "#e1e1e1", "on-primary": "#412d00", "secondary-fixed-dim": "#f7be00", "primary-fixed": "#ffdea8", "secondary-fixed": "#ffdf99", "on-error-container": "#ffdad6", "on-surface": "#e5e2e1", "error-container": "#93000a", "surface-variant": "#353534", "secondary": "#ffe5b1", "background": "#131313", "surface-dim": "#131313", "primary": "#ffdca1", "on-error": "#690005", "on-secondary-container": "#6d5200", "error": "#ffb4ab", "surface-container-high": "#2a2a2a", "surface-bright": "#3a3939", "on-tertiary-fixed-variant": "#454747", "on-surface-variant": "#d5c4ab", "tertiary-fixed-dim": "#c6c6c7", "surface-tint": "#ffba20", "on-primary-container": "#6b4c00", "on-primary-fixed": "#271900", "secondary-container": "#fec300", "on-tertiary-fixed": "#1a1c1c" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin": "2rem", "gutter-mobile": "0.75rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "gutter": "1.25rem", "space-xl": "2.5rem", "space-md": "1rem" }, "fontFamily": { "body-md": ["Outfit"], "label-md": ["Space Grotesk"], "body-sm": ["Outfit"], "body-xl": ["Outfit"], "headline-sm": ["Epilogue"], "display-hero-mobile": ["Epilogue"], "headline-xl-mobile": ["Epilogue"], "label-lg": ["Space Grotesk"], "headline-xl": ["Epilogue"], "display-hero": ["Epilogue"], "price-tag": ["Space Grotesk"], "headline-lg": ["Epilogue"] }, "fontSize": { "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "body-xl": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-hero-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800" }], "price-tag": ["18px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-surface-container-low"><div class="h-20 w-full px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="SwiftBite Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VUFtGtL3pXbCGzJLcby1FFzeuOjkDWtuTIU0N5J4M15prHd7VLA6Mqj8cOHV7UUF2PvONhZ1mVdyKyddUVIKDU3MUGgzsJQmUjYHfivZsl9LS29SOF9Pf3gpwxFxGBEknnbX0wzEL7-CUVSNFUda6RQQQuCKX3xST8wA4tAaT9EJVABLN6GuWMBV9-M0vdxpjkSja5emMVO7ByflzBuIu8qbzjJETT8Jc6leDt0mBqxfRhgZWyD4pL1_s"/><a class="flex items-center gap-space-xs" data-path="home" href="#"><span class="material-symbols-outlined text-primary-container text-[22px]">bolt</span><span class="font-headline-sm text-headline-sm uppercase text-on-surface font-extrabold tracking-tight">SWIFTBITE</span></a></div><nav class="hidden md:flex items-center gap-space-lg h-full" data-active-classes="text-primary-container border-b-2 border-primary-container font-semibold"><a aria-current="page" class="flex items-center h-full transition-colors text-primary-container border-b-2 border-primary-container font-semibold" data-path="home" href="#">Home</a><a class="flex items-center h-full text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="menu" href="#">Menu</a><a class="flex items-center h-full text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="about" href="#">About</a><a class="flex items-center h-full text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="offers" href="#">Offers</a><a class="flex items-center h-full text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm lg:gap-space-md"><button aria-label="Search" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">search</span></button><a class="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" data-path="cart" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="absolute -top-1 -right-1 px-1.5 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md leading-none">3</span></a><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg shadow-[0_0_16px_rgba(255,184,0,0.35)] transition-transform active:scale-95" data-path="order-online" href="#">Order Now</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<!-- 1. HERO SECTION -->
+<section class="relative w-full -mt-20 pt-24 pb-16 lg:pb-24 px-margin-mobile lg:px-margin overflow-hidden bg-gradient-to-b from-surface-container-lowest via-surface to-surface-container-low">
+<div class="absolute -top-32 -left-24 w-96 h-96 rounded-full bg-primary-container/10 blur-[130px] pointer-events-none"></div>
+<div class="absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-secondary-container/10 blur-[150px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-center pt-8">
+<div class="lg:col-span-6 flex flex-col z-10">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-high w-fit mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-primary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+<span class="font-label-md text-label-md text-primary-container tracking-wider uppercase">Culinary Speed &amp; Haute Flavor</span>
+</div>
+<h1 class="font-display-hero text-display-hero-mobile lg:text-display-hero uppercase tracking-tight text-on-surface mb-space-md leading-none">
+          Fast. <span class="text-primary-container inline-block">Fresh.</span><br/>Tasty.
+        </h1>
+<p class="font-body-xl text-body-xl text-on-surface-variant max-w-xl mb-space-xl">
+          Big flavors. Searing heat. Uncompromising craft. Elevated street classics made fresh for midnight cravings and high-velocity appetites.
+        </p>
+<div class="flex flex-wrap items-center gap-space-md mb-space-xl">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-xl py-4 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-95 shadow-[0_8px_28px_rgba(255,184,0,0.32)]" data-path="order-online" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span>Order Now</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-xl py-4 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors" href="#featured-menu">
+<span>Explore Menu</span>
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+</a>
+</div>
+<div class="flex items-center gap-space-lg pt-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">timer</span>
+<span class="font-label-md text-label-md text-on-surface">Avg 18m Doorstep</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-label-md text-on-surface">Charred &amp; Smashed</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-6 relative flex justify-center items-center mt-6 lg:mt-0">
+<div class="relative w-full max-w-lg aspect-square flex items-center justify-center">
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-container/20 to-transparent blur-3xl scale-95 pointer-events-none"></div>
+<img alt="Chef Signature Swift Smash Burger on rustic slate plate with melted aged cheddar and bacon" class="relative z-10 w-full h-full object-contain rounded-2xl drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] transform hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEuoKotgtqgNVCSYkfBMh1fbURN9Sm0lD9kexxMnO58A6XrDIr7nfTz6po5XdJE1BjC4eo4b-y5SfP1MficiVP2IJarWSC1w8jVsljQNgXfCyWOyM3Bb7QELHaMOADPmEH6EgTgHaSP2qBZWGb3gRytUxih5nMdexeyDCkem0K8SBc-2P72XdgjAbIrRsTDQkxR2saWYxYoPJWYzaWcrnaZ62P74dyBJPlukeBJQgs5O5-9rQluMR4"/>
+<div class="absolute bottom-4 left-2 sm:-left-4 z-20 bg-surface-container-high/90 backdrop-blur-md p-space-md rounded-xl shadow-xl flex items-center gap-space-sm max-w-xs">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="min-w-0">
+<p class="font-label-md text-label-md text-primary-container uppercase">Chef's Signature</p>
+<p class="font-headline-sm text-[16px] text-on-surface font-bold truncate">100% Angus Double Smash</p>
+</div>
+</div>
+<div class="absolute top-4 right-2 sm:-right-4 z-20 bg-surface-container-highest/90 backdrop-blur-md px-space-md py-space-xs rounded-full shadow-lg flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-price-tag text-price-tag text-on-surface">4.9</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(12k+)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ticker / Quick Stats Rail -->
+<div class="max-w-7xl mx-auto mt-space-xl pt-space-lg">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-sm p-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[24px]">bolt</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">20 Min Average</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Lightning Delivery</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[24px]">restaurant</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">100% Daily Ground</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Prime Angus Beef</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[24px]">grade</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">4.9 / 5 Rating</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">12,000+ Satisfied Bites</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[24px]">eco</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Farm-To-Table</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Crisp Fresh Greens</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. FEATURED MENU ("Made to Crave") -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface" id="featured-menu">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div>
+<span class="font-label-md text-label-md text-primary-container uppercase tracking-widest font-bold">Culinary Lab Selections</span>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface mt-space-xs">Made to Crave</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mt-space-xs">Handcrafted late-night essentials, fire-blistered crusts, and crisp fried signatures cooked to perfection.</p>
+</div>
+<!-- Filter category tags -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-2 md:pb-0 scrollbar-none" id="menu-filter-rail">
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high text-primary-container font-label-md text-label-md flex-shrink-0 shadow-sm" type="button">All Bites</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex-shrink-0 transition-colors" type="button">Burgers</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex-shrink-0 transition-colors" type="button">Fried Chicken</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex-shrink-0 transition-colors" type="button">Artisan Pizza</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex-shrink-0 transition-colors" type="button">Sides &amp; Shakes</button>
+</div>
+</div>
+<!-- Dish Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Card 1 -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
+<img alt="The Swift Double Smash Burger with melted cheese and crispy bacon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEuoKotgtqgNVCSYkfBMh1fbURN9Sm0lD9kexxMnO58A6XrDIr7nfTz6po5XdJE1BjC4eo4b-y5SfP1MficiVP2IJarWSC1w8jVsljQNgXfCyWOyM3Bb7QELHaMOADPmEH6EgTgHaSP2qBZWGb3gRytUxih5nMdexeyDCkem0K8SBc-2P72XdgjAbIrRsTDQkxR2saWYxYoPJWYzaWcrnaZ62P74dyBJPlukeBJQgs5O5-9rQluMR4"/>
+<span class="absolute top-3 left-3 px-space-sm py-1 rounded bg-primary-container text-on-primary font-label-md text-label-md uppercase font-bold">Bestseller</span>
+<div class="absolute bottom-3 right-3 px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span> High Heat
+            </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">The Swift Double Smash</h3>
+<span class="font-price-tag text-price-tag text-primary-container">$14.50</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Twin seared Angus patties, maple wood-smoked bacon, double Wisconsin cheddar, charred onions, house garlic pickles on toasted brioche.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Cal: 820 • Prep 6m</span>
+<button aria-label="Add The Swift Double Smash to cart" class="w-10 h-10 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary flex items-center justify-center transition-transform active:scale-90 shadow-[0_0_12px_rgba(255,184,0,0.3)]" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
+<img alt="Crispy Hot Honey Fried Chicken Tenders piled high with herbs and glaze" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9WUlWypaEjCOzCSARcMTL2RgQIexzRt169OAIsIVkqOMOTfTZQ2djGEv3XC7xAkbhzhFetAHBC5EAXnYB1vklslDU6bvnCIyS8fOJcxVazwwFmzk4PP8FIzAMlbc7YmEYWldpOVxDobyQZEnzkqj7-BfL4BC5181VB6onS3-m9FRpYSqLBCkUlv-95rtfsoX2pfTJauCiKQa7M2LGliagKhtnv9TyZTedQwycesvUuzTnC-RdKE5W"/>
+<span class="absolute top-3 left-3 px-space-sm py-1 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md uppercase font-bold">Chef Pick</span>
+<div class="absolute bottom-3 right-3 px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-error font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> Sweet &amp; Hot
+            </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Hot Honey Crisp Chicken</h3>
+<span class="font-price-tag text-price-tag text-primary-container">$13.00</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                24hr buttermilk brined tenders, double-crunch crust, habanero blossom honey drizzle, fresh rosemary and smoked Maldon salt flakes.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Cal: 740 • Prep 5m</span>
+<button aria-label="Add Hot Honey Crisp Chicken to cart" class="w-10 h-10 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary flex items-center justify-center transition-transform active:scale-90 shadow-[0_0_12px_rgba(255,184,0,0.3)]" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
+<img alt="Wood-fired Pepperoni Pizza with stretchy mozzarella cheese and blistered artisan crust" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_gIZSmlJtDrcsZ0ubljBrS8_TusODMgCy2bpLbRnroSPEk8tSsGmvt6dZXzexiGCAroKy3rZSMcPgla3f82PDwMAIoPLFI030qxP8b7Dp-HvP9Rx1_xTXMMTtseiPaJImxn39kRRi_l5YpO6SafGjoE7RqbmzQRqkdn_Y4_6LWiAzPQsg_Q7BKy6uhRnFWp9iCu9YGwcFAGG3_zheEprxpUDzz0WzHHQxAGQ5I_hXSXb7m9zR52e"/>
+<span class="absolute top-3 left-3 px-space-sm py-1 rounded bg-surface-container-highest text-primary-container font-label-md text-label-md uppercase font-bold">Wood-Fired</span>
+<div class="absolute bottom-3 right-3 px-space-sm py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span> 800° Stone
+            </div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Charred Diablo Pepperoni</h3>
+<span class="font-price-tag text-price-tag text-primary-container">$16.50</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Naturally leavened sourdough crust, artisan dry-cured soppressata cups, molten whole milk mozzarella, basil, hot chili oil splash.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Cal: 980 • Prep 8m</span>
+<button aria-label="Add Charred Diablo Pepperoni to cart" class="w-10 h-10 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary flex items-center justify-center transition-transform active:scale-90 shadow-[0_0_12px_rgba(255,184,0,0.3)]" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Gourmet hand-cut French fries tossed in black truffle oil, aged pecorino cheese, and fresh chives, served in a sleek dark bowl against an obsidian background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo7Q_ztfZ6TvrXKybXxm0_Zm9AkAvAXvMcxUQpnRHxZsknEZxA_x2yt_mTs2DT2bt4w5aL3QOHxO3khpIU0-6ligEJlCYgjgEotlHPb-cyeRpaiEppC2P3mzsmjE-TW_ndkJgou-X5VoFKM9qnAFuSoREL3q0uOYes1XpM6LkBtZGwqy6ZIsDToqJTMp0v0AFMPLVBDCEt2SwcpAmVflveGXjH4FTsuU-n1Abvf5yssZ0N4yoJNG44"/>
+<span class="absolute top-3 left-3 px-space-sm py-1 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md uppercase font-bold">Side Specialty</span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Truffle Parmesan Hand-Cut Fries</h3>
+<span class="font-price-tag text-price-tag text-primary-container">$6.50</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Russet potatoes double-fried in peanut oil, infused with Italian black truffle extract, microplaned aged pecorino, cracked pepper aioli dip.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Cal: 420 • Prep 4m</span>
+<button aria-label="Add Truffle Parmesan Fries to cart" class="w-10 h-10 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary flex items-center justify-center transition-transform active:scale-90 shadow-[0_0_12px_rgba(255,184,0,0.3)]" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A toasted gourmet tortilla wrap sliced in half revealing tender slow-smoked brisket, charred poblano queso sauce, cilantro, and roasted corn on a moody dark stone tray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4c8C-oIlGeMMcrfv2Y3yG-HJfjoOzL7Yqb63yXhAkemuwTz8DAdWgeA9RVWq74tWqkEVvrCWo8PUKVVihQn2wbVI7BIaDZMLyDkJrZHlZYjTDxAZtZFd0OjfJUBvoVKuYZf2Zi5DqqbR7Izvpp52bADSHahjHTr8xyVglJtKmTzRIbtICb_3AGXvXFuxIXBobTinoLY1EMnLIqXwOiT3lDVSibKF_e3r1yNGdOIwjNLki3PwiOwrb"/>
+<span class="absolute top-3 left-3 px-space-sm py-1 rounded bg-surface-container-highest text-on-surface font-label-md text-label-md uppercase font-bold">Smokehouse</span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Smoked Brisket Queso Wrap</h3>
+<span class="font-price-tag text-price-tag text-primary-container">$12.50</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                14-hour hickory smoked prime brisket, roasted fire-poblano melted queso, crisp pickled jalapenos, avocado salsa inside a seared flour tortilla.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Cal: 690 • Prep 5m</span>
+<button aria-label="Add Smoked Brisket Queso Wrap to cart" class="w-10 h-10 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary flex items-center justify-center transition-transform active:scale-90 shadow-[0_0_12px_rgba(255,184,0,0.3)]" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
+<div class="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious thick salted caramel milkshake topped with whipped cream, golden syrup swirl, and pretzel crumb in a heavy glass against a moody dimly lit studio backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUdEr8OQ3I_fYdYHQsYE_F2sXwwQQBKBQICPB7R28TU1-k-_gyjztzW92vB36cYZv0fNVCWsX8CK5D_A6UbyMu6uh5ioxGodfuj2KqkpiqbU2A1e3OsdOk3KimK8lk5JhhMw_3VIMxNf8749bow8DcxxmusxtG1h9mlHV4k65BmWjO82tE9YsyMfTjMzpfXhOyGlqEmPSKIV5QXSVMwEdG0VQwuULHKsVlHOeX2kPx5t4GmUTA_AyU"/>
+<span class="absolute top-3 left-3 px-space-sm py-1 rounded bg-secondary-container text-on-secondary font-label-md text-label-md uppercase font-bold">Sweet Craving</span>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Salted Golden Caramel Shake</h3>
+<span class="font-price-tag text-price-tag text-primary-container">$5.75</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Hand-spun Madagascar bourbon vanilla gelato, slow-cooked sea salt caramel, house-whipped dairy cream, and crushed toasted pretzel dust.
+              </p>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Cal: 540 • Instant</span>
+<button aria-label="Add Salted Golden Caramel Shake to cart" class="w-10 h-10 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary flex items-center justify-center transition-transform active:scale-90 shadow-[0_0_12px_rgba(255,184,0,0.3)]" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. WHY SWIFTBITE? -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container mb-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[16px]">bolt</span>
+<span class="font-label-md text-label-md text-primary-container uppercase">The Swift Standard</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface">Why SwiftBite?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Reinventing fast casual dining through uncompromising culinary discipline, searing precision, and unyielding speed.
+        </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Feature 1 -->
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex flex-col justify-between group hover:bg-surface-container transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-xl text-headline-xl text-primary-container/30 font-extrabold group-hover:text-primary-container transition-colors">01</span>
+<span class="material-symbols-outlined text-primary-container text-[28px]">agriculture</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Fresh Ingredients</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Never frozen. Sourced directly from regional sustainable family farms. Scratch-made brioche buns and chef sauces whisked every single morning.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm font-label-md text-label-md text-primary-container">100% Certified Local</div>
+</div>
+<!-- Feature 2 -->
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex flex-col justify-between group hover:bg-surface-container transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-xl text-headline-xl text-primary-container/30 font-extrabold group-hover:text-primary-container transition-colors">02</span>
+<span class="material-symbols-outlined text-primary-container text-[28px]">soup_kitchen</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Bold Flavors</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Proprietary dry rubs, charred wood embers, slow-simmered marinades, and an intense harmony of crisp sweet heat and umami richness.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm font-label-md text-label-md text-primary-container">Proprietary Spice Blends</div>
+</div>
+<!-- Feature 3 -->
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex flex-col justify-between group hover:bg-surface-container transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-xl text-headline-xl text-primary-container/30 font-extrabold group-hover:text-primary-container transition-colors">03</span>
+<span class="material-symbols-outlined text-primary-container text-[28px]">local_fire_department</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Made Fresh</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Cooked to order in under four minutes. Searing 500° flat-top cast iron griddles and scorching 800° stone ovens mean no warming trays—ever.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm font-label-md text-label-md text-primary-container">Zero Heat Lamps</div>
+</div>
+<!-- Feature 4 -->
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex flex-col justify-between group hover:bg-surface-container transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-headline-xl text-headline-xl text-primary-container/30 font-extrabold group-hover:text-primary-container transition-colors">04</span>
+<span class="material-symbols-outlined text-primary-container text-[28px]">two_wheeler</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Swift Service</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Proprietary thermal packaging locks steam away and preserves crisp textures. Rapid curbside lockboxes and sub-20 minute direct couriers.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm font-label-md text-label-md text-primary-container">Insulated Express Transit</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. SIGNATURE DISHES (Editorial Asymmetric Showcase) -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col mb-space-lg">
+<span class="font-label-md text-label-md text-primary-container uppercase tracking-widest font-bold">Chef's Reserve</span>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface">Signature Showcase</h2>
+</div>
+<!-- Asymmetric Editorial Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-stretch">
+<!-- Huge Centerpiece (7 cols) -->
+<div class="lg:col-span-7 rounded-2xl bg-surface-container-low overflow-hidden shadow-xl flex flex-col justify-between">
+<div class="relative w-full h-80 sm:h-96 bg-surface-container-lowest overflow-hidden">
+<img alt="Chef Signature Swift Smash Burger on dark slate" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEuoKotgtqgNVCSYkfBMh1fbURN9Sm0lD9kexxMnO58A6XrDIr7nfTz6po5XdJE1BjC4eo4b-y5SfP1MficiVP2IJarWSC1w8jVsljQNgXfCyWOyM3Bb7QELHaMOADPmEH6EgTgHaSP2qBZWGb3gRytUxih5nMdexeyDCkem0K8SBc-2P72XdgjAbIrRsTDQkxR2saWYxYoPJWYzaWcrnaZ62P74dyBJPlukeBJQgs5O5-9rQluMR4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 px-space-md py-1 rounded-full bg-primary-container text-on-primary font-label-md text-label-md uppercase font-bold">
+              Culinary Flagship
+            </div>
+</div>
+<div class="p-space-lg -mt-10 relative z-10">
+<div class="flex flex-wrap items-center gap-space-sm mb-space-xs">
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-primary-container font-label-md text-label-md">Double Beef</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Aged Cheddar</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md text-label-md">Artisan Brioche</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-sm">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">The Mega Swift Smash Experience</h3>
+<span class="font-price-tag text-headline-sm text-primary-container">$15.95</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+              Crafted with two custom 45-day dry-aged beef blends, smashed onto an 550° griddle until lace-thin caramelized crusts form. Topped with molten double cheddar, smoky bacon rashers, and our secret Swift umami dressing.
+            </p>
+<div class="flex flex-wrap items-center gap-space-md">
+<button class="px-space-lg py-3 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-95 shadow-[0_4px_16px_rgba(255,184,0,0.3)] flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">restaurant</span>
+<span>Order Signature Dish</span>
+</button>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Includes hand-cut dipping sauce</span>
+</div>
+</div>
+</div>
+<!-- Flanking Side Cards (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg justify-between">
+<!-- Side 1: Wings -->
+<div class="rounded-xl bg-surface-container-low p-space-md flex flex-col sm:flex-row gap-space-md items-center shadow-md hover:bg-surface-container transition-colors">
+<div class="w-full sm:w-44 h-40 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-lowest">
+<img alt="Crisp fried chicken drumsticks with spicy hot honey glaze" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9WUlWypaEjCOzCSARcMTL2RgQIexzRt169OAIsIVkqOMOTfTZQ2djGEv3XC7xAkbhzhFetAHBC5EAXnYB1vklslDU6bvnCIyS8fOJcxVazwwFmzk4PP8FIzAMlbc7YmEYWldpOVxDobyQZEnzkqj7-BfL4BC5181VB6onS3-m9FRpYSqLBCkUlv-95rtfsoX2pfTJauCiKQa7M2LGliagKhtnv9TyZTedQwycesvUuzTnC-RdKE5W"/>
+</div>
+<div class="flex flex-col justify-between w-full">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase">Nashville Heat</span>
+<span class="font-price-tag text-price-tag text-on-surface">$18.00</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Nashville Fire Crunch Box</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Crispy battered whole wings tossed with cayenne glaze, house dill pickles, and buttermilk herb dip.</p>
+</div>
+<button class="mt-space-md inline-flex items-center gap-space-xs text-primary-container font-label-md text-label-md hover:underline w-fit" type="button">
+<span>Add to order</span>
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+</button>
+</div>
+</div>
+<!-- Side 2: Pizza -->
+<div class="rounded-xl bg-surface-container-low p-space-md flex flex-col sm:flex-row gap-space-md items-center shadow-md hover:bg-surface-container transition-colors">
+<div class="w-full sm:w-44 h-40 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-lowest">
+<img alt="Slice of artisan wood fired pizza with stretchy cheese" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_gIZSmlJtDrcsZ0ubljBrS8_TusODMgCy2bpLbRnroSPEk8tSsGmvt6dZXzexiGCAroKy3rZSMcPgla3f82PDwMAIoPLFI030qxP8b7Dp-HvP9Rx1_xTXMMTtseiPaJImxn39kRRi_l5YpO6SafGjoE7RqbmzQRqkdn_Y4_6LWiAzPQsg_Q7BKy6uhRnFWp9iCu9YGwcFAGG3_zheEprxpUDzz0WzHHQxAGQ5I_hXSXb7m9zR52e"/>
+</div>
+<div class="flex flex-col justify-between w-full">
+<div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary-container font-semibold uppercase">Stone Oven</span>
+<span class="font-price-tag text-price-tag text-on-surface">$17.50</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Charred Soppressata Pie</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Crisp blistering rim, rich San Marzano plum tomatoes, whole milk curd, hot honey drizzle, fresh oregano.</p>
+</div>
+<button class="mt-space-md inline-flex items-center gap-space-xs text-primary-container font-label-md text-label-md hover:underline w-fit" type="button">
+<span>Add to order</span>
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. SPECIAL OFFERS ("CRAVING MORE?") -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-gradient-to-b from-surface-container-lowest via-surface-container-low to-surface-container-lowest">
+<div class="max-w-7xl mx-auto">
+<div class="rounded-2xl bg-surface-container p-space-lg lg:p-space-xl relative overflow-hidden shadow-xl">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg relative z-10">
+<div>
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded bg-primary-container text-on-primary font-label-md text-label-md uppercase font-bold mb-space-xs">
+              Limited-Run Combos
+            </div>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface">Craving More? Taste the Combo Advantage</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Discover dynamic bundle savings, late-night midnight drops, and group feast packs.</p>
+</div>
+<button class="px-space-md py-space-sm rounded-full bg-surface-container-highest text-on-surface hover:text-primary-container font-label-md text-label-md transition-colors flex-shrink-0" type="button">
+            View All Offers &amp; Combos
+          </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md relative z-10">
+<!-- Offer 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-high flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary-container font-label-md text-label-md">Save 20%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Code: SWIFTLUNCH</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">The Swift Lunch Box</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Double Smash Burger + Truffle Parmesan Fries + Cold Craft Soda.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$16.99 <span class="text-on-surface-variant line-through text-sm">$21.50</span></span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95" type="button">Claim</button>
+</div>
+</div>
+<!-- Offer 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-high flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded bg-secondary-container/20 text-secondary-fixed-dim font-label-md text-label-md">Feast Deal</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Code: GAMEDAY</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Game Day Wings &amp; Pie</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">2 Large Artisan Wood-Fired Pizzas + 16 Hot Honey Tenders + 4 Dips.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$38.99 <span class="text-on-surface-variant line-through text-sm">$49.00</span></span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95" type="button">Claim</button>
+</div>
+</div>
+<!-- Offer 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-high flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded bg-error-container text-error font-label-md text-label-md">After 9 PM</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Auto-Applied</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Late Night Burger BOGO 50%</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Buy any signature smash burger and get the second at half off until 3 AM.</p>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">50% Off 2nd</span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95" type="button">Claim</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. ABOUT SWIFTBITE ("GOOD FOOD. GOOD MOOD.") -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-6 flex flex-col">
+<span class="font-label-md text-label-md text-primary-container uppercase tracking-widest font-bold">The Origin Story</span>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface mt-space-xs mb-space-md">Good Food. Good Mood.</h2>
+<p class="font-body-xl text-body-xl text-on-surface-variant mb-space-md leading-relaxed">
+          Founded on the quiet obsession that high-speed dining should never mean cutting corners. SwiftBite started in a single bustling downtown alley kitchen with one roaring cast-iron flat top and a relentless passion for deep, unapologetic flavor.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg leading-relaxed">
+          Today, we blend high-velocity ordering tech with Michelin-trained kitchen fundamentals: custom daily butchered meat blends, fresh heirloom produce, and our bespoke 24-hour dough fermentation process.
+        </p>
+<!-- Metrics Bento -->
+<div class="grid grid-cols-2 gap-space-md p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div>
+<div class="font-headline-xl text-headline-xl text-primary-container font-extrabold">4.5M+</div>
+<div class="font-body-sm text-body-sm text-on-surface">Patties Smashed to Perfection</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-primary-container font-extrabold">&lt; 18 Min</div>
+<div class="font-body-sm text-body-sm text-on-surface">Average Kitchen to Doorstep</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-primary-container font-extrabold">100%</div>
+<div class="font-body-sm text-body-sm text-on-surface">Grass-Fed Prime Beef Blends</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl text-primary-container font-extrabold">24</div>
+<div class="font-body-sm text-body-sm text-on-surface">Nationwide Kitchen Hubs</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-6 relative">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl bg-surface-container-low">
+<img class="w-full h-[460px] object-cover" data-alt="A focused head chef searing gourmet burgers on an ultra-hot commercial flat top griddle with intense steam, fiery embers, and vibrant golden lighting reflecting off stainless steel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnQz9-UaJT4NmdeOsjrwbgXSIEQ7Tiwte1ibfHA5HOmom66o8wKoIffNWWHIOIIVyMsI39PLGjjPPAB8xlwmcUxZ48L-EwwhKa0mXmookwnub-4Qi3ao9NVa7n5R2to0GUz7NThM_fwefDsz6Otc0RI5cuBuF_0DwqYZ6IElLCVy15fxOqf7uRrqnXG4HGqrmGI4AzrPgajD3BvPU2Ogy-tEFFdfTnTDF1c3zVzIGK1K7ooOfPJkE8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-space-md rounded-xl bg-surface/90 backdrop-blur-md shadow-lg">
+<p class="font-body-md text-body-md text-on-surface italic mb-2">
+              "We treat a midnight smash burger with the same technical devotion as a three-course tasting menu."
+            </p>
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-primary-container font-bold">Marcus Vance</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">• Culinary Director &amp; Co-Founder</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. CUSTOMER FAVORITES (Horizontal Food Showcase) -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-end justify-between mb-space-lg">
+<div>
+<span class="font-label-md text-label-md text-primary-container uppercase tracking-widest font-bold">Community Loved</span>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface mt-space-xs">Customer Favorites</h2>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs">
+<button aria-label="Scroll left" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors" onclick="document.getElementById('favorites-scroller').scrollBy({left: -320, behavior: 'smooth'})" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button aria-label="Scroll right" class="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center justify-center transition-colors" onclick="document.getElementById('favorites-scroller').scrollBy({left: 320, behavior: 'smooth'})" type="button">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Scroller track -->
+<div class="flex gap-space-md overflow-x-auto pb-space-md scroll-smooth scrollbar-none" id="favorites-scroller">
+<!-- Fav Card 1 -->
+<div class="w-72 flex-shrink-0 rounded-xl bg-surface-container-low p-space-md shadow-md flex flex-col justify-between">
+<div>
+<div class="h-44 rounded-lg overflow-hidden mb-space-sm bg-surface-container-lowest">
+<img alt="The Classic Swift Deluxe burger" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEuoKotgtqgNVCSYkfBMh1fbURN9Sm0lD9kexxMnO58A6XrDIr7nfTz6po5XdJE1BjC4eo4b-y5SfP1MficiVP2IJarWSC1w8jVsljQNgXfCyWOyM3Bb7QELHaMOADPmEH6EgTgHaSP2qBZWGb3gRytUxih5nMdexeyDCkem0K8SBc-2P72XdgjAbIrRsTDQkxR2saWYxYoPJWYzaWcrnaZ62P74dyBJPlukeBJQgs5O5-9rQluMR4"/>
+</div>
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold">4.9</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(3,240 orders)</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">The Classic Swift Deluxe</h4>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$13.50</span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95 shadow-sm" type="button">
+              Add +
+            </button>
+</div>
+</div>
+<!-- Fav Card 2 -->
+<div class="w-72 flex-shrink-0 rounded-xl bg-surface-container-low p-space-md shadow-md flex flex-col justify-between">
+<div>
+<div class="h-44 rounded-lg overflow-hidden mb-space-sm bg-surface-container-lowest">
+<img alt="Spicy Honey Butter Tenders" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9WUlWypaEjCOzCSARcMTL2RgQIexzRt169OAIsIVkqOMOTfTZQ2djGEv3XC7xAkbhzhFetAHBC5EAXnYB1vklslDU6bvnCIyS8fOJcxVazwwFmzk4PP8FIzAMlbc7YmEYWldpOVxDobyQZEnzkqj7-BfL4BC5181VB6onS3-m9FRpYSqLBCkUlv-95rtfsoX2pfTJauCiKQa7M2LGliagKhtnv9TyZTedQwycesvUuzTnC-RdKE5W"/>
+</div>
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold">5.0</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(4,810 orders)</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Spicy Honey Butter Tenders</h4>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$12.75</span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95 shadow-sm" type="button">
+              Add +
+            </button>
+</div>
+</div>
+<!-- Fav Card 3 -->
+<div class="w-72 flex-shrink-0 rounded-xl bg-surface-container-low p-space-md shadow-md flex flex-col justify-between">
+<div>
+<div class="h-44 rounded-lg overflow-hidden mb-space-sm bg-surface-container-lowest">
+<img alt="Smoked Pepperoni Truffle Pie" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_gIZSmlJtDrcsZ0ubljBrS8_TusODMgCy2bpLbRnroSPEk8tSsGmvt6dZXzexiGCAroKy3rZSMcPgla3f82PDwMAIoPLFI030qxP8b7Dp-HvP9Rx1_xTXMMTtseiPaJImxn39kRRi_l5YpO6SafGjoE7RqbmzQRqkdn_Y4_6LWiAzPQsg_Q7BKy6uhRnFWp9iCu9YGwcFAGG3_zheEprxpUDzz0WzHHQxAGQ5I_hXSXb7m9zR52e"/>
+</div>
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold">4.8</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(2,900 orders)</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Smoked Truffle Pie</h4>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$17.00</span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95 shadow-sm" type="button">
+              Add +
+            </button>
+</div>
+</div>
+<!-- Fav Card 4 -->
+<div class="w-72 flex-shrink-0 rounded-xl bg-surface-container-low p-space-md shadow-md flex flex-col justify-between">
+<div>
+<div class="h-44 rounded-lg overflow-hidden mb-space-sm bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="Golden crisp garlic French fries dusted with minced fresh garlic and chopped parsley served in a dark ceramic basket with dip" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD32ibi2XouWklZNlD2izCLILep8MaUNjiQWipI5I8xYcwzZ4CO8_93EgWWZ-x2hM3R82iD5vyvZzJlLW1leIAMOSME8DKG0pWfyT3nBsf_2xQDVSbLYNjNe3-ybGX8DyEkRDb1Ig74BesZxuTHEjeXWGSoJTZ6aanLmJzzI-3aGF2lAePa2tyQBzPovxAcqtJXdIeBkHK4Zgup3DBv8_DdZisYEKz8cOD_4m90iCvQUgvSWQsaGMT7"/>
+</div>
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold">4.9</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(1,890 orders)</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Crispy Garlic Fries</h4>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$5.50</span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95 shadow-sm" type="button">
+              Add +
+            </button>
+</div>
+</div>
+<!-- Fav Card 5 -->
+<div class="w-72 flex-shrink-0 rounded-xl bg-surface-container-low p-space-md shadow-md flex flex-col justify-between">
+<div>
+<div class="h-44 rounded-lg overflow-hidden mb-space-sm bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A warm molten chocolate lava pastry cut open with decadent liquid fudge oozing out against a rustic dark backdrop with powdered sugar dusting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0i1nLJIxACyAYwFKkVzKTO1AKtqZM1neccihE-RvnY3aYSvL-7GAkKe6Z2HONWLGT7UQiplQ_QHuoIbsg24sFqT1CAcCaErP2WhBe-wuD2jFqzq9EQUaPhLw2x8mVm4qN3RtO5dfL35TRf3gM16tmtT-fksFlGhorTD3oBzKZllci6P2S3gFsqgcdSUJtb_tU6ypipF3eqsBUed4eZGv37bzOK0tYXObavgUsq07Zv2wzix6rEPZG"/>
+</div>
+<div class="flex items-center gap-1 text-primary-container mb-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold">4.9</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm">(1,420 orders)</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Molten Choco-Lava Pie</h4>
+</div>
+<div class="flex items-center justify-between pt-space-md mt-space-sm">
+<span class="font-price-tag text-price-tag text-primary-container">$6.25</span>
+<button class="px-space-md py-1.5 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-transform active:scale-95 shadow-sm" type="button">
+              Add +
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. LOCATION & CONTACT -->
+<section class="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<!-- Details Card -->
+<div class="lg:col-span-6 flex flex-col p-space-lg rounded-2xl bg-surface-container-low shadow-lg">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container w-fit mb-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[18px]">near_me</span>
+<span class="font-label-md text-label-md text-primary-container uppercase">Downtown Flagship</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface mb-space-md">Find Your Nearest SwiftBite</h2>
+<!-- Interactive Search Input -->
+<div class="flex items-center rounded-lg bg-surface-container-high px-space-md py-2 mb-space-lg shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant mr-space-xs">search</span>
+<input class="w-full bg-transparent font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none" placeholder="Enter zip code, district or city..." type="text"/>
+<button class="px-space-md py-1 rounded bg-primary-container text-on-primary font-label-md text-label-md flex-shrink-0" type="button">Locate</button>
+</div>
+<div class="flex flex-col gap-space-md text-on-surface-variant font-body-sm text-body-sm mb-space-lg">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px] mt-0.5">location_on</span>
+<div>
+<strong class="text-on-surface block font-label-lg text-label-lg">742 Evergreen Blvd</strong>
+<span>Downtown Arts District, Sector 4</span>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px] mt-0.5">schedule</span>
+<div>
+<strong class="text-on-surface block font-label-lg text-label-lg">Opening Hours</strong>
+<div>Mon - Thu: 11:00 AM – 11:00 PM</div>
+<div class="text-primary-container font-semibold">Fri - Sat: 11:00 AM – 01:00 AM (Late Night Express)</div>
+<div>Sunday: 11:00 AM – 10:00 PM</div>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary-container text-[20px] mt-0.5">call</span>
+<div>
+<strong class="text-on-surface block font-label-lg text-label-lg">Direct Line</strong>
+<span>(555) 794-3824 (555-SWIFT)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<a class="px-space-lg py-3 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-95 shadow-sm inline-flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+<span>Get Directions</span>
+</a>
+<a class="px-space-lg py-3 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors inline-flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Book Table / Event</span>
+</a>
+</div>
+</div>
+<!-- Stylized Dark Map Component -->
+<div class="lg:col-span-6 h-96 lg:h-[460px] rounded-2xl overflow-hidden shadow-xl bg-surface-container-high relative">
+<div class="w-full h-full bg-cover bg-center" data-location="Downtown Los Angeles, CA" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjSLVK9HQ_PxI65_HiCJGQHxUfxValSERrui46G3G2SS-H6k61gYt3aRWlfuo8hdzzBQb2Qj2fEUH-qcD4NaxmYBKaCWwA-8WX3ZcCe9ZcC3C86DbNeSVHs05_E1Cp7x_3kXAFTXSC6YgkBB1q534sm3XoE1TBTwYpy8FjQ4_CfN5nh-ZmMHYKK8gX06tDBnxBD6nEMYVn9qk1ckS7u-cuICF195SMSRwvnrO_t2FQtHk2OO9bnT_0')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent pointer-events-none"></div>
+<div class="absolute bottom-4 left-4 right-4 p-space-sm rounded-lg bg-surface/90 backdrop-blur-md flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-label-md text-label-md text-on-surface">Kitchen is Active &amp; Taking Orders</span>
+</div>
+<span class="font-label-md text-label-md text-primary-container font-bold">14 min wait</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. STICKY QUICK-ACTION CART DRAWER (Bottom Bar Trigger) -->
+<div class="sticky bottom-4 z-40 px-margin-mobile lg:px-margin max-w-4xl mx-auto w-full pointer-events-none">
+<div class="p-space-sm rounded-full bg-surface/95 backdrop-blur-xl shadow-2xl flex items-center justify-between gap-space-md pointer-events-auto">
+<div class="flex items-center gap-space-sm pl-space-md">
+<div class="w-9 h-9 rounded-full bg-primary-container/20 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Express Midnight Kitchen</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Free rapid doorstep on orders $25+</span>
+</div>
+</div>
+<a class="px-space-xl py-space-sm rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-95 shadow-[0_0_20px_rgba(255,184,0,0.4)] flex items-center gap-space-xs" data-path="order-online" href="#">
+<span>Start Your Order</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-surface-container-low"><div class="w-full px-margin-mobile lg:px-margin py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl mb-space-xl"><div><div class="flex items-center gap-space-xs mb-space-sm"><img alt="SwiftBite Brand Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VUFtGtL3pXbCGzJLcby1FFzeuOjkDWtuTIU0N5J4M15prHd7VLA6Mqj8cOHV7UUF2PvONhZ1mVdyKyddUVIKDU3MUGgzsJQmUjYHfivZsl9LS29SOF9Pf3gpwxFxGBEknnbX0wzEL7-CUVSNFUda6RQQQuCKX3xST8wA4tAaT9EJVABLN6GuWMBV9-M0vdxpjkSja5emMVO7ByflzBuIu8qbzjJETT8Jc6leDt0mBqxfRhgZWyD4pL1_s"/><span class="material-symbols-outlined text-primary-container text-[20px]">bolt</span><span class="font-headline-sm text-headline-sm uppercase text-on-surface font-bold tracking-tight">SWIFTBITE</span></div><p class="font-label-lg text-label-lg text-primary-container font-medium mb-space-md">Fast • Fresh • Tasty</p><p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mb-space-md">Haute street-food elevated for high-velocity late-night cravings. Searing heat, electric flavor, delivered at warp speed.</p><div class="flex items-center gap-space-sm text-on-surface-variant"><a aria-label="Explore" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:text-primary-container transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">public</span></a><a aria-label="Connect" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:text-primary-container transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">share</span></a><a aria-label="Community" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:text-primary-container transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">chat_bubble</span></a></div></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Navigation</h4><ul class="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="home" href="#">Home</a></li><li><a class="hover:text-on-surface transition-colors" data-path="menu" href="#">Menu</a></li><li><a class="hover:text-on-surface transition-colors" data-path="about" href="#">About Us</a></li><li><a class="hover:text-on-surface transition-colors" data-path="offers" href="#">Exclusive Offers</a></li><li><a class="hover:text-on-surface transition-colors" data-path="contact" href="#">Contact</a></li></ul></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Customer Care</h4><ul class="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="order-online" href="#">Order Online</a></li><li><a class="hover:text-on-surface transition-colors" data-path="track-order" href="#">Track Order</a></li><li><a class="hover:text-on-surface transition-colors" data-path="contact" href="#">Contact Us</a></li><li><a class="hover:text-on-surface transition-colors" data-path="dietary-allergens" href="#">Dietary &amp; Allergens</a></li><li><a class="hover:text-on-surface transition-colors" data-path="store-locator" href="#">Store Locator</a></li></ul></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Operating Hours</h4><div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><div class="flex justify-between"><span class="text-on-surface">Mon - Thu:</span><span>11:00 AM - 12:00 AM</span></div><div class="flex justify-between"><span class="text-on-surface">Fri - Sat:</span><span class="text-primary-container font-semibold">11:00 AM - 03:00 AM</span></div><div class="flex justify-between"><span class="text-on-surface">Sunday:</span><span>12:00 PM - 11:00 PM</span></div><div class="mt-space-sm p-space-sm rounded bg-surface-container flex items-center gap-space-xs text-primary-container"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="font-label-md text-label-md">Late Night Express Available</span></div></div></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Get Electric Drops</h4><p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Subscribe to unlock secret midnight menus, VIP tasting invites, and flash discounts.</p><form class="flex flex-col gap-space-xs"><div class="flex items-center rounded-lg bg-surface border border-outline-variant overflow-hidden focus-within:border-primary-container"><input class="w-full px-space-md py-space-sm bg-transparent font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none" placeholder="Enter your email" type="email"/><button class="px-space-md py-space-sm bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-colors" type="submit">Join</button></div></form></div></div><div class="pt-space-lg border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md"><div>© 2025 SWIFTBITE Culinary Labs Inc. All rights reserved.</div><div class="flex items-center gap-space-md"><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors" href="#">Security</a></div></div></div></footer></body></html>
