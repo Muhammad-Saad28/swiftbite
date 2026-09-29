@@ -92,9 +92,14 @@ export default function Hero() {
     const t3 = setTimeout(() => {
       // 30 FPS animation
       frameInterval = setInterval(() => {
-        currentFrameRef.current++;
-        if (currentFrameRef.current <= 300) {
-          drawFrame(currentFrameRef.current);
+        const nextFrame = currentFrameRef.current + 1;
+        if (nextFrame <= 300) {
+          const img = imagesRef.current[nextFrame - 1];
+          // Only advance if the image is fully loaded, acting as a buffer on slow networks
+          if (img && img.complete) {
+            currentFrameRef.current = nextFrame;
+            drawFrame(currentFrameRef.current);
+          }
         } else {
           clearInterval(frameInterval);
           setIsBlurred(true);
