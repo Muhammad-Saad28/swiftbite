@@ -1,101 +1,228 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Hero() {
+  const [showZinger, setShowZinger] = useState(false);
+  const [showMainText, setShowMainText] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
+  
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const currentFrameRef = useRef(1);
+
+  // Helper to draw a specific frame maintaining bg-cover behavior
+  const drawFrame = (frameIndex: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    // Safety check for out of bounds (after animation finishes, currentFrame can be 301)
+    const safeFrameIndex = Math.min(Math.max(frameIndex, 1), 300);
+    const img = imagesRef.current[safeFrameIndex - 1];
+    
+    if (ctx && img && img.complete) {
+      const canvasRatio = canvas.width / canvas.height;
+      const imgRatio = img.width / img.height;
+      let drawWidth, drawHeight, offsetX, offsetY;
+      if (canvasRatio > imgRatio) {
+        drawWidth = canvas.width;
+        drawHeight = canvas.width / imgRatio;
+        offsetX = 0;
+        offsetY = (canvas.height - drawHeight) / 2;
+      } else {
+        drawHeight = canvas.height;
+        drawWidth = canvas.height * imgRatio;
+        offsetX = (canvas.width - drawWidth) / 2;
+        offsetY = 0;
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    }
+  };
+
+  useEffect(() => {
+    // Force scroll to top on refresh
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    // Hide header while animation plays
+    window.dispatchEvent(new Event('header:hide'));
+
+    // Preload all 300 frames into memory
+    const loadedImages: HTMLImageElement[] = [];
+    for (let i = 1; i <= 300; i++) {
+      const img = new window.Image();
+      img.src = `/frames/swiftbite-frame-${String(i).padStart(3, '0')}.webp`;
+      
+      // Draw first frame as soon as it loads
+      if (i === 1) {
+        img.onload = () => drawFrame(1);
+      }
+      loadedImages.push(img);
+    }
+    imagesRef.current = loadedImages;
+
+    // Timeline
+    const t1 = setTimeout(() => {
+      setShowZinger(true);
+    }, 2500);
+
+    const t2 = setTimeout(() => {
+      setShowZinger(false);
+    }, 4500);
+
+    let frameInterval: NodeJS.Timeout;
+    const t3 = setTimeout(() => {
+      // 30 FPS animation
+      frameInterval = setInterval(() => {
+        currentFrameRef.current++;
+        if (currentFrameRef.current <= 300) {
+          drawFrame(currentFrameRef.current);
+        } else {
+          clearInterval(frameInterval);
+          setIsBlurred(true);
+          
+          // Show header after animation finishes
+          window.dispatchEvent(new Event('header:show'));
+          
+          setTimeout(() => {
+            setShowMainText(true);
+          }, 500);
+        }
+      }, 1000 / 45); // 45 FPS (1.5x speed)
+    }, 5000);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      if (frameInterval) clearInterval(frameInterval);
+    };
+  }, []);
+
+  // Update canvas size on window resize to keep it crisp
+  useEffect(() => {
+    const handleResize = () => {
+      if (canvasRef.current) {
+        // Set actual internal canvas resolution to match screen
+        canvasRef.current.width = window.innerWidth;
+        canvasRef.current.height = window.innerHeight;
+        // Redraw current frame
+        drawFrame(currentFrameRef.current);
+      }
+    };
+    
+    // Initial size setup
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
-      {/**/}
-<section className="relative w-full -mt-20 pt-24 pb-16 lg:pb-24 px-margin-mobile lg:px-margin overflow-hidden bg-gradient-to-b from-surface-container-lowest via-surface to-surface-container-low">
-<div className="absolute -top-32 -left-24 w-96 h-96 rounded-full bg-primary-container/10 blur-[130px] pointer-events-none"></div>
-<div className="absolute top-1/3 -right-32 w-[32rem] h-[32rem] rounded-full bg-secondary-container/10 blur-[150px] pointer-events-none"></div>
-<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-xl items-center pt-8">
-<div className="lg:col-span-6 flex flex-col z-10">
-<div className="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-high w-fit mb-space-md shadow-sm">
-<span className="material-symbols-outlined text-primary-container text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>electric_bolt</span>
-<span className="font-label-md text-label-md text-primary-container tracking-wider uppercase">Culinary Speed &amp; Haute Flavor</span>
-</div>
-<h1 className="font-display-hero text-display-hero-mobile lg:text-display-hero uppercase tracking-tight text-on-surface mb-space-md leading-none">
-          Fast. <span className="text-primary-container inline-block">Fresh.</span><br/>Tasty.
-        </h1>
-<p className="font-body-xl text-body-xl text-on-surface-variant max-w-xl mb-space-xl">
-          Big flavors. Searing heat. Uncompromising craft. Elevated street classics made fresh for midnight cravings and high-velocity appetites.
-        </p>
-<div className="flex flex-wrap items-center gap-space-md mb-space-xl">
-<Link className="inline-flex items-center justify-center gap-space-xs px-space-xl py-4 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-95 shadow-[0_8px_28px_rgba(255,184,0,0.32)]" href="/order-online">
-<span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>shopping_bag</span>
-<span>Order Now</span>
-</Link>
-<Link className="inline-flex items-center justify-center gap-space-xs px-space-xl py-4 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors" href="/menu">
-<span>Explore Menu</span>
-<span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-</Link>
-</div>
-<div className="flex items-center gap-space-lg pt-space-md">
-<div className="flex items-center gap-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[20px]">timer</span>
-<span className="font-label-md text-label-md text-on-surface">Avg 18m Doorstep</span>
-</div>
-<div className="flex items-center gap-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[20px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>local_fire_department</span>
-<span className="font-label-md text-label-md text-on-surface">Charred &amp; Smashed</span>
-</div>
-</div>
-</div>
-<div className="lg:col-span-6 relative flex justify-center items-center mt-6 lg:mt-0">
-<div className="relative w-full max-w-lg aspect-square flex items-center justify-center">
-<div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary-container/20 to-transparent blur-3xl scale-95 pointer-events-none"></div>
-<img alt="Chef Signature Swift Smash Burger on rustic slate plate with melted aged cheddar and bacon" className="relative z-10 w-full h-full object-contain rounded-2xl drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)] transform hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEuoKotgtqgNVCSYkfBMh1fbURN9Sm0lD9kexxMnO58A6XrDIr7nfTz6po5XdJE1BjC4eo4b-y5SfP1MficiVP2IJarWSC1w8jVsljQNgXfCyWOyM3Bb7QELHaMOADPmEH6EgTgHaSP2qBZWGb3gRytUxih5nMdexeyDCkem0K8SBc-2P72XdgjAbIrRsTDQkxR2saWYxYoPJWYzaWcrnaZ62P74dyBJPlukeBJQgs5O5-9rQluMR4"/>
-<div className="absolute bottom-4 left-2 sm:-left-4 z-20 bg-surface-container-high/90 backdrop-blur-md p-space-md rounded-xl shadow-xl flex items-center gap-space-sm max-w-xs">
-<div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
-<span className="material-symbols-outlined text-on-primary text-[22px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>verified</span>
-</div>
-<div className="min-w-0">
-<p className="font-label-md text-label-md text-primary-container uppercase">Chef's Signature</p>
-<p className="font-headline-sm text-[16px] text-on-surface font-bold truncate">100% Angus Double Smash</p>
-</div>
-</div>
-<div className="absolute top-4 right-2 sm:-right-4 z-20 bg-surface-container-highest/90 backdrop-blur-md px-space-md py-space-xs rounded-full shadow-lg flex items-center gap-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[18px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>star</span>
-<span className="font-price-tag text-price-tag text-on-surface">4.9</span>
-<span className="font-body-sm text-body-sm text-on-surface-variant">(12k+)</span>
-</div>
-</div>
-</div>
-</div>
-{/**/}
-<div className="max-w-7xl mx-auto mt-space-xl pt-space-lg">
-<div className="grid grid-cols-2 md:grid-cols-4 gap-space-md p-space-md rounded-xl bg-surface-container-low shadow-sm">
-<div className="flex items-center gap-space-sm p-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[24px]">bolt</span>
-<div>
-<div className="font-label-lg text-label-lg text-on-surface font-bold">20 Min Average</div>
-<div className="font-body-sm text-body-sm text-on-surface-variant">Lightning Delivery</div>
-</div>
-</div>
-<div className="flex items-center gap-space-sm p-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[24px]">restaurant</span>
-<div>
-<div className="font-label-lg text-label-lg text-on-surface font-bold">100% Daily Ground</div>
-<div className="font-body-sm text-body-sm text-on-surface-variant">Prime Angus Beef</div>
-</div>
-</div>
-<div className="flex items-center gap-space-sm p-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[24px]">grade</span>
-<div>
-<div className="font-label-lg text-label-lg text-on-surface font-bold">4.9 / 5 Rating</div>
-<div className="font-body-sm text-body-sm text-on-surface-variant">12,000+ Satisfied Bites</div>
-</div>
-</div>
-<div className="flex items-center gap-space-sm p-space-xs">
-<span className="material-symbols-outlined text-primary-container text-[24px]">eco</span>
-<div>
-<div className="font-label-lg text-label-lg text-on-surface font-bold">Farm-To-Table</div>
-<div className="font-body-sm text-body-sm text-on-surface-variant">Crisp Fresh Greens</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+      <section className="relative w-full -mt-20 h-screen min-h-[800px] overflow-hidden flex items-center bg-surface">
+        
+        {/* High Performance Canvas for Background Image Sequence */}
+        <canvas 
+          ref={canvasRef} 
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+
+        {/* Blur overlay that activates at the end of the animation */}
+        <div className={`absolute inset-0 transition-all duration-1000 z-10 ${isBlurred ? 'bg-surface/20 backdrop-blur-[3px]' : 'bg-transparent pointer-events-none'}`}></div>
+        
+        <div className="max-w-7xl mx-auto h-full w-full relative z-20">
+          
+          {/* Zinger Burger Text (Right Side) */}
+          <AnimatePresence>
+            {showZinger && (
+              <motion.div 
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 50, transition: { duration: 0.5 } }}
+                transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+                className="absolute bottom-36 right-4 md:right-12 z-20 flex flex-col items-end text-right"
+              >
+                <span className="font-label-lg text-primary-container tracking-[0.2em] uppercase font-bold mb-2">The Signature</span>
+                <h2 className="font-display-hero text-3xl md:text-4xl lg:text-6xl uppercase font-black text-on-surface drop-shadow-xl leading-[0.9] tracking-tighter">
+                  ZINGER<br/>BURGER
+                </h2>
+                <p className="font-body-lg text-xl text-on-surface-variant mt-6 tracking-wide drop-shadow-md">
+                  Big flavor. Straight from the fryer.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* SwiftBite Text (Left Side) */}
+          <AnimatePresence>
+            {showMainText && (
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+                className="absolute bottom-36 left-4 md:left-12 z-20 flex flex-col items-start"
+              >
+                <span className="font-label-lg text-on-surface-variant tracking-[0.2em] uppercase font-semibold mb-2 drop-shadow-md">Est. Premium Quality</span>
+                <h1 className="font-display-hero text-4xl md:text-5xl lg:text-7xl uppercase font-black text-on-surface drop-shadow-xl leading-[0.85] tracking-tighter">
+                  SWIFT<br/>BITE
+                </h1>
+                <div className="mt-8 flex flex-col gap-2">
+                  <Link className="inline-flex items-center justify-center gap-space-xs px-space-xl py-4 rounded-full bg-primary-container hover:bg-secondary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-95 shadow-[0_8px_28px_rgba(255,184,0,0.32)] w-fit" href="/order-online">
+                    <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: '\'FILL\' 1' }}>shopping_bag</span>
+                    <span>Order Now</span>
+                  </Link>
+                  <p className="font-body-md text-lg text-on-surface-variant mt-4 uppercase tracking-widest drop-shadow-md">
+                    Fast. Fresh. Tasty.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={showMainText ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="absolute bottom-8 left-0 right-0 max-w-7xl mx-auto px-margin-mobile lg:px-margin z-30"
+        >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-space-md p-space-md rounded-2xl bg-surface-container/90 backdrop-blur-md shadow-md border border-surface-container-high">
+        <div className="flex items-center gap-space-sm p-space-xs">
+        <span className="material-symbols-outlined text-primary-container text-[28px]">bolt</span>
+        <div>
+        <div className="font-label-lg text-label-lg text-on-surface font-bold">20 Min Average</div>
+        <div className="font-body-sm text-body-sm text-on-surface-variant">Lightning Delivery</div>
+        </div>
+        </div>
+        <div className="flex items-center gap-space-sm p-space-xs">
+        <span className="material-symbols-outlined text-primary-container text-[28px]">restaurant</span>
+        <div>
+        <div className="font-label-lg text-label-lg text-on-surface font-bold">100% Daily Ground</div>
+        <div className="font-body-sm text-body-sm text-on-surface-variant">Prime Angus Beef</div>
+        </div>
+        </div>
+        <div className="flex items-center gap-space-sm p-space-xs">
+        <span className="material-symbols-outlined text-primary-container text-[28px]">grade</span>
+        <div>
+        <div className="font-label-lg text-label-lg text-on-surface font-bold">4.9 / 5 Rating</div>
+        <div className="font-body-sm text-body-sm text-on-surface-variant">12,000+ Satisfied Bites</div>
+        </div>
+        </div>
+        <div className="flex items-center gap-space-sm p-space-xs">
+        <span className="material-symbols-outlined text-primary-container text-[28px]">eco</span>
+        <div>
+        <div className="font-label-lg text-label-lg text-on-surface font-bold">Farm-To-Table</div>
+        <div className="font-body-sm text-body-sm text-on-surface-variant">Crisp Fresh Greens</div>
+        </div>
+        </div>
+        </div>
+        </motion.div>
+      </section>
     </>
   );
 }

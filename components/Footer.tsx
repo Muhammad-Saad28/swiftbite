@@ -4,7 +4,99 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <>
-      <footer className="w-full bg-surface-container-lowest border-t border-surface-container-low"><div className="w-full px-margin-mobile lg:px-margin py-space-xl"><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl mb-space-xl"><div><div className="flex items-center gap-space-xs mb-space-sm"><img alt="SwiftBite Brand Logo" className="h-7 w-auto object-contain" src="/logo.jpeg"/><span className="material-symbols-outlined text-primary-container text-[20px]">bolt</span><span className="font-headline-sm text-headline-sm uppercase text-on-surface font-bold tracking-tight">SWIFTBITE</span></div><p className="font-label-lg text-label-lg text-primary-container font-medium mb-space-md">Fast • Fresh • Tasty</p><p className="font-body-sm text-body-sm text-on-surface-variant max-w-xs mb-space-md">Haute street-food elevated for high-velocity late-night cravings. Searing heat, electric flavor, delivered at warp speed.</p><div className="flex items-center gap-space-sm text-on-surface-variant"><Link aria-label="Explore" className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:text-primary-container transition-colors" href="#"><span className="material-symbols-outlined text-[16px]">public</span></Link><Link aria-label="Connect" className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:text-primary-container transition-colors" href="#"><span className="material-symbols-outlined text-[16px]">share</span></Link><Link aria-label="Community" className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:text-primary-container transition-colors" href="#"><span className="material-symbols-outlined text-[16px]">chat_bubble</span></Link></div></div><div><h4 className="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Navigation</h4><ul className="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><li><Link className="hover:text-on-surface transition-colors" href="/">Home</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/menu">Menu</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/about">About Us</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/offers">Exclusive Offers</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/contact">Contact</Link></li></ul></div><div><h4 className="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Customer Care</h4><ul className="flex flex-col gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><li><Link className="hover:text-on-surface transition-colors" href="/order-online">Order Online</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/order-online">Track Order</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/contact">Contact Us</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/menu">Dietary &amp; Allergens</Link></li><li><Link className="hover:text-on-surface transition-colors" href="/contact">Store Locator</Link></li></ul></div><div><h4 className="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Operating Hours</h4><div className="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><div className="flex justify-between"><span className="text-on-surface">Mon - Thu:</span><span>11:00 AM - 12:00 AM</span></div><div className="flex justify-between"><span className="text-on-surface">Fri - Sat:</span><span className="text-primary-container font-semibold">11:00 AM - 03:00 AM</span></div><div className="flex justify-between"><span className="text-on-surface">Sunday:</span><span>12:00 PM - 11:00 PM</span></div><div className="mt-space-sm p-space-sm rounded bg-surface-container flex items-center gap-space-xs text-primary-container"><span className="material-symbols-outlined text-[16px]">schedule</span><span className="font-label-md text-label-md">Late Night Express Available</span></div></div></div><div><h4 className="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Get Electric Drops</h4><p className="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Subscribe to unlock secret midnight menus, VIP tasting invites, and flash discounts.</p><form className="flex flex-col gap-space-xs"><div className="flex items-center rounded-lg bg-surface border border-outline-variant overflow-hidden focus-within:border-primary-container"><input className="w-full px-space-md py-space-sm bg-transparent font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none" placeholder="Enter your email" type="email"/><button className="px-space-md py-space-sm bg-primary-container hover:bg-secondary-container text-on-primary font-label-md text-label-md transition-colors" type="submit">Join</button></div></form></div></div><div className="pt-space-lg border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md"><div>© 2025 SWIFTBITE Culinary Labs Inc. All rights reserved.</div><div className="flex items-center gap-space-md"><Link className="hover:text-on-surface transition-colors" href="#">Privacy Policy</Link><Link className="hover:text-on-surface transition-colors" href="#">Terms of Service</Link><Link className="hover:text-on-surface transition-colors" href="#">Security</Link></div></div></div></footer>
+      <footer className="w-full bg-[#111111] text-gray-300 border-t border-[#222]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            
+            {/* Brand Section */}
+            <div className="lg:col-span-1">
+              <div className="mb-6">
+                <Link href="/">
+                  <img alt="SwiftBite Brand Logo" className="h-12 w-auto object-contain" src="/logo-bgremoved.png"/>
+                </Link>
+              </div>
+              <p className="text-[#ffb800] font-bold text-sm tracking-widest uppercase mb-4">Fast • Fresh • Tasty</p>
+              <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+                Haute street-food elevated for high-velocity late-night cravings. Searing heat, electric flavor, delivered at warp speed across Lahore.
+              </p>
+              <div className="flex flex-col gap-3 mb-6 text-sm text-gray-400">
+                <div className="flex items-start gap-2">
+                  <span className="material-symbols-outlined text-[18px] text-[#ffb800] shrink-0 mt-0.5">location_on</span>
+                  <span>M.M. Alam Road, Gulberg III<br/>Lahore, Pakistan</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[18px] text-[#ffb800] shrink-0">call</span>
+                  <span>+92 305 4449151</span>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Link href="#" className="text-gray-400 hover:text-[#ffb800] transition-colors"><span className="material-symbols-outlined text-[20px]">public</span></Link>
+                <Link href="#" className="text-gray-400 hover:text-[#ffb800] transition-colors"><span className="material-symbols-outlined text-[20px]">share</span></Link>
+                <Link href="#" className="text-gray-400 hover:text-[#ffb800] transition-colors"><span className="material-symbols-outlined text-[20px]">chat_bubble</span></Link>
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Navigation</h4>
+              <ul className="flex flex-col gap-3 text-sm">
+                <li><Link className="hover:text-white transition-colors" href="/">Home</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/menu">Menu</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/about">About Us</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/offers">Exclusive Offers</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/contact">Contact</Link></li>
+              </ul>
+            </div>
+
+            {/* Customer Care */}
+            <div>
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Customer Care</h4>
+              <ul className="flex flex-col gap-3 text-sm">
+                <li><Link className="hover:text-white transition-colors" href="/cart">Order Online</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/cart">Track Order</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/contact">Contact Us</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/menu">Dietary & Allergens</Link></li>
+                <li><Link className="hover:text-white transition-colors" href="/contact">Lahore Branches</Link></li>
+              </ul>
+            </div>
+
+            {/* Operating Hours */}
+            <div className="lg:col-span-1">
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Operating Hours (LHR)</h4>
+              <div className="flex flex-col gap-2 text-sm">
+                <div className="flex justify-between"><span>Mon - Thu:</span><span className="text-white">11:00 AM - 12:00 AM</span></div>
+                <div className="flex justify-between"><span>Fri - Sat:</span><span className="text-[#ffb800] font-bold">11:00 AM - 03:00 AM</span></div>
+                <div className="flex justify-between"><span>Sunday:</span><span className="text-white">12:00 PM - 11:00 PM</span></div>
+                
+                <div className="mt-4 p-3 rounded-lg bg-[#1a1a1a] border border-[#333] flex items-center gap-3 text-[#ffb800]">
+                  <span className="material-symbols-outlined text-[18px]">schedule</span>
+                  <span className="font-bold text-xs uppercase tracking-wider">Late Night Express</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Newsletter */}
+            <div className="lg:col-span-1">
+              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">Get Electric Drops</h4>
+              <p className="text-sm text-gray-400 mb-4">Subscribe to unlock secret midnight menus, VIP tasting invites, and flash discounts.</p>
+              <form className="flex rounded-md overflow-hidden bg-[#1a1a1a] border border-[#333] focus-within:border-[#ffb800] transition-colors">
+                <input className="w-full px-4 py-2 bg-transparent text-sm text-white placeholder-gray-500 focus:outline-none" placeholder="Enter your email" type="email"/>
+                <button className="px-4 py-2 bg-[#ffb800] hover:bg-[#e0a200] text-black font-bold text-xs uppercase tracking-wider transition-colors" type="submit">Join</button>
+              </form>
+            </div>
+            
+          </div>
+          
+          <div className="pt-8 border-t border-[#222] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div>© 2025 SWIFTBITE Culinary Labs Inc. All rights reserved.</div>
+            <div className="flex gap-6">
+              <Link className="hover:text-white transition-colors" href="#">Privacy Policy</Link>
+              <Link className="hover:text-white transition-colors" href="#">Terms of Service</Link>
+              <Link className="hover:text-white transition-colors" href="#">Security</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

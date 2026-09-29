@@ -61,11 +61,16 @@ export default function Page() {
               <div>
                 <div className="flex items-center justify-between mb-space-xs">
                   <h3 className="font-headline-sm text-on-surface">{item.name}</h3>
-                  <span className="font-price-tag text-primary-container">${(item.price / 100).toFixed(2)}</span>
+                  <span className="font-price-tag text-primary-container">PKR {(item.price / 100).toFixed(2)}</span>
                 </div>
                 <p className="font-body-sm text-on-surface-variant line-clamp-2">{item.short_description}</p>
               </div>
-              <button onClick={() => alert('Added to Order!')} className="mt-space-md w-full py-2 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary transition-colors text-on-surface font-label-md flex justify-center items-center gap-2">
+              <button onClick={() => {
+                const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+                currentCart.push(item);
+                localStorage.setItem('cart', JSON.stringify(currentCart));
+                window.dispatchEvent(new Event('cart:add'));
+              }} className="mt-space-md w-full py-2 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary transition-colors text-on-surface font-label-md flex justify-center items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">add_shopping_cart</span> Add to Order
               </button>
             </div>
