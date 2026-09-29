@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import MagneticButton from '../../components/ui/MagneticButton';
 import { ChevronRight } from 'lucide-react';
+import { useCart } from '../../components/CartContext';
 
 const menuData = [
   { id: "1", category: "01 — THE CRUNCH", name: "ZINGER STACK", price: "Rs. 650", desc: "Signature crispy chicken with spicy mayo.", image: "/images/zinger.png" },
@@ -18,6 +19,7 @@ const categories = ["ALL", "01 — THE CRUNCH", "02 — THE STACK", "03 — THE 
 
 export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState("ALL");
+  const { addToCart } = useCart();
 
   const filteredItems = activeCategory === "ALL" 
     ? menuData 
@@ -38,7 +40,7 @@ export default function MenuPage() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
           <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-4">Complete Selection</h2>
-          <h1 className="font-[family-name:var(--font-epilogue)] text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9]">
+          <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9]">
             THE<br/>SWIFTBITE<br/>MENU.
           </h1>
         </motion.div>
@@ -97,7 +99,10 @@ export default function MenuPage() {
                 </div>
 
                 {/* Add to Order Button */}
-                <MagneticButton className="w-full bg-gray-900 border border-gray-800 text-white hover:bg-[#FFD700] hover:text-black py-4 font-bold tracking-widest uppercase text-sm flex items-center justify-center transition-colors">
+                <MagneticButton 
+                  onClick={() => addToCart({ id: item.id, name: item.name, price: parseInt(item.price.replace('Rs. ', '')), image: item.image })}
+                  className="w-full bg-gray-900 border border-gray-800 text-white hover:bg-[#FFD700] hover:text-black py-4 font-bold tracking-widest uppercase text-sm flex items-center justify-center transition-colors"
+                >
                   ADD TO BITE <ChevronRight className="w-4 h-4 ml-2" />
                 </MagneticButton>
               </motion.div>

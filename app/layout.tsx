@@ -16,6 +16,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { CartProvider } from '../components/CartContext';
+
 export default function RootLayout({
   children,
 }: {
@@ -28,7 +30,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className={`${epilogue.variable} ${outfit.variable} ${spaceGrotesk.variable} bg-black font-body-md text-body-md text-on-surface`}>
-        <Header /><main className="bg-black">{children}</main><Footer />
+        <CartProvider>
+          <Header /><main className="bg-black">{children}</main><Footer />
+        </CartProvider>
       </body>
     </html>
   )

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import InteractiveProductImage from "./InteractiveProductImage";
 import MagneticButton from "./MagneticButton";
 import { ChevronRight } from "lucide-react";
+import { useCart } from "../CartContext";
 
 // Mock data mapping to the 5 world categories
 const menuItems = [
@@ -52,6 +53,7 @@ const menuItems = [
 
 export default function InteractiveMenu() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { addToCart } = useCart();
 
   const nextItem = () => {
     setCurrentIndex((prev) => (prev + 1) % menuItems.length);
@@ -116,10 +118,15 @@ export default function InteractiveMenu() {
               transition={{ delay: 0.4 }}
             >
               <MagneticButton 
-                onClick={nextItem}
+                onClick={() => addToCart({
+                  id: currentItem.id,
+                  name: currentItem.name,
+                  price: parseInt(currentItem.price.replace('Rs. ', '')),
+                  image: currentItem.image
+                })}
                 className="bg-[#FFD700] text-black px-8 py-4 font-bold text-lg rounded-none hover:bg-white transition-colors"
               >
-                ADD TO ORDER <ChevronRight className="inline-block w-5 h-5 ml-2" />
+                ADD TO BITE <ChevronRight className="inline-block w-5 h-5 ml-2" />
               </MagneticButton>
             </motion.div>
           </div>

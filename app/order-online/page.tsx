@@ -32,7 +32,7 @@ export default function OrderOnlinePage() {
             Kitchen Systems Online
           </h2>
           
-          <h1 className="font-[family-name:var(--font-epilogue)] text-6xl md:text-[10vw] font-black tracking-tighter uppercase leading-[0.8] mb-12">
+          <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.8] mb-12">
             START YOUR<br/><span className="text-[#FFD700]">BITE.</span>
           </h1>
 

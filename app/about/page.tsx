@@ -12,7 +12,7 @@ export default function AboutPage() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-20 text-center">
           <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-4">The Origin</h2>
-          <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mx-auto">
+          <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9] mx-auto">
             WE DON'T DO<br/><span className="text-[#FFD700]">AVERAGE.</span>
           </h1>
         </motion.div>

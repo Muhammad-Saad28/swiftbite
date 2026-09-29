@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
+import { useCart } from "../CartContext";
 
 const options = {
   mains: [
@@ -41,11 +42,31 @@ export default function BuildYourBite() {
     });
   };
 
+  const { addToCart } = useCart();
   const handleNext = () => {
     if (step < 3) setStep(step + 1);
     else {
       // Logic to add to cart goes here
-      alert("Added to YOUR BITE!");
+      let basePrice = 650;
+      if (selection.main.id === 'beef') basePrice = 850;
+      if (selection.main.id === 'wrap') basePrice = 500;
+      
+      const extrasPrice = selection.extras.reduce((sum, extraId) => {
+        if (extraId === 'cheese') return sum + 100;
+        if (extraId === 'jalapeno') return sum + 80;
+        if (extraId === 'chicken') return sum + 250;
+        return sum;
+      }, 0);
+
+      addToCart({
+        id: `custom-${selection.main.id}-${Date.now()}`,
+        name: `CUSTOM ${selection.main.name.replace(/🍔 |🌯 /g, '')}`,
+        price: basePrice + extrasPrice,
+        image: selection.main.image
+      });
+      
+      // Reset form
+      setStep(1);
     }
   };
 

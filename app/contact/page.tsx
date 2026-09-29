@@ -30,7 +30,7 @@ export default function ContactPage() {
               <span className="w-2 h-2 bg-black rounded-full animate-ping" />
               Secure Channel Open
             </div>
-            <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-[8vw] font-black tracking-tighter uppercase leading-[0.85] text-white mix-blend-difference">
+            <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.85] text-white mix-blend-difference">
               PING <span className="text-transparent" style={{ WebkitTextStroke: '2px #FFD700' }}>THE</span> GRID.
             </h1>
           </motion.div>

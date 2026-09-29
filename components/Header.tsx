@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useCart } from './CartContext';
 
 export default function Header() {
   const pathname = usePathname();
+  const { cart } = useCart();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -14,17 +16,19 @@ export default function Header() {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const [isVisible, setIsVisible] = useState(pathname !== '/');
+  const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setCartCount(JSON.parse(localStorage.getItem('cart') || '[]').length);
+    setMounted(true);
     setWishlistCount(JSON.parse(localStorage.getItem('wishlist') || '[]').length);
 
     if (pathname !== '/') {
       setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
 
     const handleShow = () => setIsVisible(true);
@@ -47,7 +51,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/5 transition-transform duration-700 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/5 transition-transform duration-700 ${!mounted ? 'translate-y-0' : (isVisible ? 'translate-y-0' : '-translate-y-full')}`}>
         <div className="h-24 w-full px-8 lg:px-24 flex items-center justify-between">
           <div className="flex items-center gap-space-sm flex-1 justify-start shrink-0">
             <Link className="flex items-center gap-space-xs" href="/">
@@ -57,7 +61,7 @@ export default function Header() {
           
           <nav className="hidden xl:flex items-center justify-center gap-2 h-full flex-none">
             {navLinks.map((link) => {
-              const isActive = pathname === link.path;
+              const isActive = mounted ? pathname === link.path : false;
               return (
                 <Link 
                   key={link.path} 
@@ -73,20 +77,20 @@ export default function Header() {
           <div className="flex items-center gap-6 xl:gap-8 flex-1 justify-end shrink-0">
             <div className="flex items-center gap-4">
               {/* Heart Icon */}
-            <Link href="/wishlist" aria-label="Favorites" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors relative" type="button">
+            <Link href="/wishlist" aria-label="Favorites" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors relative">
               <span className="material-symbols-outlined text-[24px]">favorite</span>
               {wishlistCount > 0 && <span className="absolute -top-1.5 -right-1.5 bg-[#ffb800] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{wishlistCount}</span>}
             </Link>
             
             {/* User Icon */}
-            <Link href="/account" aria-label="Profile" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors" type="button">
+            <Link href="/account" aria-label="Profile" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors">
               <span className="material-symbols-outlined text-[24px]">person</span>
             </Link>
 
             {/* Shopping Cart */}
-            <Link href="/cart" aria-label="Cart" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors relative" type="button">
+            <Link href="/cart" aria-label="Cart" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors relative">
               <span className="material-symbols-outlined text-[24px]">shopping_cart</span>
-              {cartCount > 0 && <span className="absolute -top-1.5 -right-1.5 bg-[#ffb800] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{cartCount}</span>}
+              {cart.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-[#ffb800] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{cart.length}</span>}
             </Link>
 
             </div>

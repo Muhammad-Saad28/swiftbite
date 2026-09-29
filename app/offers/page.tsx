@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import MagneticButton from '../../components/ui/MagneticButton';
 import { ChevronRight } from 'lucide-react';
+import { useCart } from '../../components/CartContext';
 
 const drops = [
   {
@@ -37,6 +38,8 @@ const drops = [
 ];
 
 export default function OffersPage() {
+  const { addToCart } = useCart();
+  
   return (
     <div className="w-full bg-black min-h-screen text-[#e5e2e1] pt-32 pb-20 overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
@@ -44,7 +47,7 @@ export default function OffersPage() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-20">
           <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-4">Limited Edition</h2>
-          <h1 className="font-[family-name:var(--font-epilogue)] text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9]">
+          <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9]">
             SWIFTBITE<br/>DROPS.
           </h1>
           <p className="text-gray-400 font-medium max-w-xl mt-6">
@@ -91,7 +94,15 @@ export default function OffersPage() {
                   <div className="text-3xl font-black text-white">{drop.price}</div>
                   
                   {drop.active ? (
-                    <MagneticButton className="bg-[#FFD700] text-black px-8 py-4 font-bold tracking-widest uppercase flex items-center hover:bg-white transition-colors">
+                    <MagneticButton 
+                      onClick={() => addToCart({
+                        id: `drop-${drop.id}`,
+                        name: drop.title,
+                        price: parseInt(drop.price.replace('Rs. ', '').replace(',', '')),
+                        image: drop.image
+                      })}
+                      className="bg-[#FFD700] text-black px-8 py-4 font-bold tracking-widest uppercase flex items-center hover:bg-white transition-colors"
+                    >
                       CLAIM DROP <ChevronRight className="w-5 h-5 ml-2" />
                     </MagneticButton>
                   ) : (

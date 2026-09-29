@@ -62,8 +62,9 @@ export default function Hero() {
     }
     window.scrollTo(0, 0);
 
-    // Hide header while animation plays
+    // Hide header and lock scroll while animation plays
     window.dispatchEvent(new Event('header:hide'));
+    document.body.style.overflow = 'hidden';
 
     // Preload all 300 frames into memory
     const loadedImages: HTMLImageElement[] = [];
@@ -104,8 +105,9 @@ export default function Hero() {
           clearInterval(frameInterval);
           setIsBlurred(true);
           
-          // Show header after animation finishes
+          // Show header and allow scrolling after animation finishes
           window.dispatchEvent(new Event('header:show'));
+          document.body.style.overflow = '';
           
           setTimeout(() => {
             setShowMainText(true);
