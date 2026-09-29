@@ -1,28 +1,60 @@
 "use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-export default function Page() {
+export default function AboutPage() {
   return (
-    <div className="pt-20 min-h-[calc(100vh-100px)]">
-      <div className="max-w-7xl mx-auto py-space-xl px-margin-mobile lg:px-margin">
-      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className="relative rounded-3xl overflow-hidden h-[60vh] mb-space-xl">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
-        <div className="absolute bottom-10 left-10 max-w-2xl">
-          <span className="px-3 py-1 bg-primary-container text-on-primary rounded-full font-label-md uppercase tracking-wider mb-4 inline-block">Our Story</span>
-          <h1 className="font-display-hero text-on-surface leading-none">Born in the <span className="text-primary-container">Heat</span>.</h1>
+    <div className="w-full bg-black min-h-screen text-[#e5e2e1] pt-32 pb-20 overflow-hidden">
+      <div className="container mx-auto px-6 relative z-10">
+        
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-20 text-center">
+          <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-4">The Origin</h2>
+          <h1 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9] mx-auto">
+            WE DON'T DO<br/><span className="text-[#FFD700]">AVERAGE.</span>
+          </h1>
+        </motion.div>
+
+        {/* Cinematic Split Screen */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-gray-900 mb-20">
+          <div className="relative h-[400px] lg:h-auto w-full border-b lg:border-b-0 lg:border-r border-gray-900">
+             <Image src="/images/kitchen.png" alt="SwiftBite Kitchen" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+          </div>
+          <div className="p-12 md:p-20 flex flex-col justify-center bg-[#0a0a0a]">
+            <h3 className="font-[family-name:var(--font-epilogue)] text-3xl font-black uppercase tracking-tighter mb-6 text-white">THE ALLEYWAY KITCHEN</h3>
+            <p className="text-gray-400 text-lg leading-relaxed mb-6 font-medium">
+              We didn't start in a boardroom. We started in a 200 sq.ft kitchen with a single roaring cast-iron flat top. The mission was simple: redefine late-night food.
+            </p>
+            <p className="text-gray-400 text-lg leading-relaxed font-medium">
+              Fast food usually means compromises. We stripped away the corporate bloat and replaced it with Michelin-trained fundamentals. Custom meat blends. 24-hour dough. Unapologetic flavor.
+            </p>
+          </div>
         </div>
-      </motion.div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-space-xl text-on-surface-variant font-body-xl leading-relaxed">
-        <motion.p initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
-          Founded on the quiet obsession that high-speed dining should never mean cutting corners. SwiftBite started in a single bustling downtown alley kitchen with one roaring cast-iron flat top and a relentless passion for deep, unapologetic flavor.
-        </motion.p>
-        <motion.p initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
-          Today, we blend high-velocity ordering tech with Michelin-trained kitchen fundamentals: custom daily butchered meat blends, fresh heirloom produce, and our bespoke 24-hour dough fermentation process.
-        </motion.p>
+
+        {/* Manifesto Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { title: "VELOCITY", desc: "Our kitchens are engineered for speed, delivering your bite at warp speed without sacrificing an ounce of quality." },
+            { title: "PRECISION", desc: "Every burger is smashed with exact pressure to achieve the ultimate Maillard reaction. Science meets street food." },
+            { title: "CULTURE", desc: "We aren't just feeding you. We're soundtracking your late nights and fueling your midnight adventures." }
+          ].map((item, i) => (
+            <motion.div 
+              key={item.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-[#111] p-10 border border-gray-900 hover:border-[#FFD700] transition-colors"
+            >
+              <h4 className="text-[#FFD700] font-[family-name:var(--font-epilogue)] text-3xl font-black tracking-tighter mb-4">{item.title}</h4>
+              <p className="text-gray-400 font-medium leading-relaxed">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
-    </div>
     </div>
   );
 }

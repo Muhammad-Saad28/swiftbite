@@ -1,43 +1,53 @@
 "use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import MagneticButton from '../../components/ui/MagneticButton';
+import { ChevronRight } from 'lucide-react';
 
-export default function Page() {
+export default function OrderOnlinePage() {
   return (
-    <div className="pt-20 min-h-[calc(100vh-100px)]">
-      <div className="max-w-3xl mx-auto py-space-xl px-margin-mobile lg:px-margin">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-surface-container-low p-8 lg:p-12 rounded-3xl border border-surface-container shadow-2xl">
-        <div className="text-center mb-10">
-          <span className="px-4 py-1.5 rounded-full bg-primary-container/10 text-primary-container font-label-md uppercase tracking-widest font-bold mb-4 inline-block">Checkout Protocol</span>
-          <h1 className="font-headline-xl text-on-surface uppercase">Initialize <span className="text-primary-container">Order</span></h1>
-        </div>
-        
-        <div className="space-y-6">
-          <div className="p-6 rounded-2xl bg-surface-container border border-primary-container/30 cursor-pointer hover:bg-surface-container-high transition-colors">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary flex justify-center items-center"><span className="material-symbols-outlined">two_wheeler</span></div>
-              <div>
-                <h3 className="font-headline-sm text-on-surface">Delivery (Express)</h3>
-                <p className="text-on-surface-variant text-sm">Avg 18-24 mins directly to your door.</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-6 rounded-2xl bg-surface-container border border-transparent cursor-pointer hover:bg-surface-container-high transition-colors opacity-70 hover:opacity-100">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-surface-container-high text-on-surface flex justify-center items-center"><span className="material-symbols-outlined">storefront</span></div>
-              <div>
-                <h3 className="font-headline-sm text-on-surface">Pickup / Curbside</h3>
-                <p className="text-on-surface-variant text-sm">Ready in 10 mins. We'll bring it to your car.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="w-full bg-black min-h-screen text-[#e5e2e1] flex items-center justify-center overflow-hidden relative">
+      
+      {/* Background Rings */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.1, 0.3] }} 
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute w-[800px] h-[800px] border border-[#FFD700] rounded-full"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.5, 1], opacity: [0.1, 0.05, 0.1] }} 
+          transition={{ duration: 12, repeat: Infinity }}
+          className="absolute w-[1200px] h-[1200px] border border-[#FFD700] rounded-full"
+        />
+      </div>
 
-        <button className="w-full mt-10 py-5 bg-primary-container text-on-primary rounded-2xl font-label-lg text-[18px] hover:bg-secondary-container transition-transform active:scale-95 shadow-[0_10px_30px_rgba(255,184,0,0.25)] flex justify-center items-center gap-3">
-          Continue to Payment <span className="material-symbols-outlined">arrow_forward</span>
-        </button>
-      </motion.div>
-    </div>
+      <div className="container mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+        
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
+          <h2 className="text-[#FFD700] text-sm md:text-base font-bold tracking-[0.4em] uppercase mb-6 flex items-center justify-center gap-3">
+            <span className="w-2 h-2 bg-[#FFD700] rounded-full animate-ping" />
+            Kitchen Systems Online
+          </h2>
+          
+          <h1 className="font-[family-name:var(--font-epilogue)] text-6xl md:text-[10vw] font-black tracking-tighter uppercase leading-[0.8] mb-12">
+            START YOUR<br/><span className="text-[#FFD700]">BITE.</span>
+          </h1>
+
+          <p className="text-gray-400 font-medium text-lg md:text-xl max-w-2xl mx-auto mb-16">
+            Access the full midnight menu, configure your exact flavor profile, and secure your drop before it sells out.
+          </p>
+
+          <Link href="/menu">
+            <MagneticButton className="bg-[#FFD700] text-black px-12 py-6 text-xl md:text-2xl font-black tracking-widest uppercase flex items-center mx-auto hover:bg-white transition-colors shadow-[0_0_40px_rgba(255,215,0,0.3)]">
+              INITIALIZE ORDER <ChevronRight className="w-8 h-8 ml-2" />
+            </MagneticButton>
+          </Link>
+        </motion.div>
+
+      </div>
     </div>
   );
 }

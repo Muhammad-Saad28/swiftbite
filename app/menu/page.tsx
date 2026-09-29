@@ -1,87 +1,111 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { supabase } from '../../lib/supabase';
 
-export default function Page() {
-  const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState('All');
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import MagneticButton from '../../components/ui/MagneticButton';
+import { ChevronRight } from 'lucide-react';
 
-  useEffect(() => {
-    async function fetchProducts() {
-      const { data, error } = await supabase.from('website_products').select('*').eq('is_active', true);
-      if (data) setProducts(data);
-    }
-    fetchProducts();
-  }, []);
+const menuData = [
+  { id: "1", category: "01 — THE CRUNCH", name: "ZINGER STACK", price: "Rs. 650", desc: "Signature crispy chicken with spicy mayo.", image: "/images/zinger.png" },
+  { id: "2", category: "02 — THE STACK", name: "BEEF SUPREME", price: "Rs. 850", desc: "Double smashed patty, caramelized onions.", image: "/images/beef-burger.png" },
+  { id: "3", category: "03 — THE HEAT", name: "DIABLO WRAP", price: "Rs. 500", desc: "Spicy tenders, jalapeños, sriracha.", image: "/images/spicy_wrap.png" },
+  { id: "4", category: "04 — THE SIDEKICK", name: "TRUFFLE FRIES", price: "Rs. 400", desc: "Crispy fries with truffle oil & parmesan.", image: "/images/loaded.png" },
+  { id: "5", category: "05 — THE SIP", name: "CRAFT COLA", price: "Rs. 250", desc: "Artisan cola with fresh lemon.", image: "/images/signature_drink.png" }
+];
 
-  const categories = ['All', 'Burgers', 'Shawarma', 'Pizza', 'Fried Chicken', 'Sides', 'Drinks'];
-  const filteredProducts = category === 'All' ? products : products.filter(p => p.metadata?.category === category);
+const categories = ["ALL", "01 — THE CRUNCH", "02 — THE STACK", "03 — THE HEAT", "04 — THE SIDEKICK", "05 — THE SIP"];
+
+export default function MenuPage() {
+  const [activeCategory, setActiveCategory] = useState("ALL");
+
+  const filteredItems = activeCategory === "ALL" 
+    ? menuData 
+    : menuData.filter(item => item.category === activeCategory);
 
   return (
-    <div className="max-w-7xl mx-auto py-space-xl px-margin-mobile lg:px-margin pt-32 min-h-[calc(100vh-100px)]">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <h1 className="font-display-hero text-display-hero-mobile lg:text-display-hero uppercase tracking-tight text-on-surface mb-space-sm">
-          Our <span className="text-primary-container">Menu</span>
-        </h1>
-        <p className="font-body-xl text-on-surface-variant max-w-2xl mb-space-xl">Explore our full range of hyper-crafted late-night essentials. Filter by category to find your perfect craving.</p>
-      </motion.div>
+    <div className="w-full bg-[#111] min-h-screen text-white pt-32 pb-20 overflow-hidden">
       
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="flex items-center gap-space-sm overflow-x-auto pb-4 mb-space-lg scrollbar-none">
-        {categories.map((cat, i) => (
-          <button 
-            key={i} 
-            onClick={() => setCategory(cat)}
-            className={`px-space-md py-space-xs rounded-full font-label-md text-label-md flex-shrink-0 transition-colors ${category === cat ? 'bg-primary-container text-on-primary' : 'bg-surface-container text-on-surface-variant hover:text-on-surface'}`}
-          >
-            {cat}
-          </button>
-        ))}
-      </motion.div>
+      {/* Background Graphic */}
+      <div className="fixed top-1/4 -right-32 text-[#FFD700] opacity-5 pointer-events-none rotate-90 origin-right">
+        <h1 className="text-[25vw] font-[family-name:var(--font-epilogue)] font-black whitespace-nowrap tracking-tighter">
+          FULL MENU
+        </h1>
+      </div>
 
-      <motion.div 
-        key={category}
-        initial="hidden" 
-        animate="show" 
-        variants={{
-          hidden: { opacity: 0 },
-          show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1 }
-          }
-        }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg"
-      >
-        {filteredProducts.map((item) => (
-          <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }} className="flex flex-col rounded-xl bg-surface-container-low overflow-hidden shadow-md group hover:bg-surface-container transition-colors">
-            <div className="relative h-60 w-full overflow-hidden bg-surface-container-lowest">
-              <img src={item.images?.[0] || 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800'} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-            </div>
-            <div className="p-space-md flex flex-col flex-1 justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-space-xs">
-                  <h3 className="font-headline-sm text-on-surface">{item.name}</h3>
-                  <span className="font-price-tag text-primary-container">PKR {(item.price / 100).toFixed(2)}</span>
+      <div className="container mx-auto px-6 relative z-10">
+        
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
+          <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-4">Complete Selection</h2>
+          <h1 className="font-[family-name:var(--font-epilogue)] text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9]">
+            THE<br/>SWIFTBITE<br/>MENU.
+          </h1>
+        </motion.div>
+
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-4 mb-16 border-b border-gray-800 pb-8">
+          {categories.map((cat) => (
+            <button 
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-3 font-bold tracking-widest text-xs md:text-sm uppercase transition-all duration-300 border-2 
+                ${activeCategory === cat ? 'border-[#FFD700] bg-[#FFD700] text-black' : 'border-gray-800 text-gray-400 hover:border-gray-500'}`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Menu Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <AnimatePresence>
+            {filteredItems.map((item, index) => (
+              <motion.div 
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group relative bg-black border border-gray-900 p-8 flex flex-col items-center text-center hover:border-[#FFD700]/50 transition-colors"
+              >
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase text-[#FFD700]">
+                  {item.category}
                 </div>
-                <p className="font-body-sm text-on-surface-variant line-clamp-2">{item.short_description}</p>
-              </div>
-              <button onClick={() => {
-                const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
-                currentCart.push(item);
-                localStorage.setItem('cart', JSON.stringify(currentCart));
-                window.dispatchEvent(new Event('cart:add'));
-              }} className="mt-space-md w-full py-2 rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary transition-colors text-on-surface font-label-md flex justify-center items-center gap-2">
-                <span className="material-symbols-outlined text-[18px]">add_shopping_cart</span> Add to Order
-              </button>
-            </div>
-          </motion.div>
-        ))}
-        {filteredProducts.length === 0 && (
-          <div className="col-span-full py-12 text-center text-on-surface-variant font-body-lg">
-            No items found in this category.
-          </div>
-        )}
-      </motion.div>
+
+                {/* Product Image */}
+                <div className="relative w-48 h-48 mb-8 mt-4">
+                  <Image 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    className="object-contain drop-shadow-2xl group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Product Info */}
+                <h3 className="font-[family-name:var(--font-epilogue)] text-3xl font-black uppercase mb-2 tracking-tighter">
+                  {item.name}
+                </h3>
+                <p className="text-gray-400 font-medium text-sm mb-6 h-10">
+                  {item.desc}
+                </p>
+                <div className="text-[#FFD700] font-bold text-2xl mb-8">
+                  {item.price}
+                </div>
+
+                {/* Add to Order Button */}
+                <MagneticButton className="w-full bg-gray-900 border border-gray-800 text-white hover:bg-[#FFD700] hover:text-black py-4 font-bold tracking-widest uppercase text-sm flex items-center justify-center transition-colors">
+                  ADD TO BITE <ChevronRight className="w-4 h-4 ml-2" />
+                </MagneticButton>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+      </div>
     </div>
   );
 }

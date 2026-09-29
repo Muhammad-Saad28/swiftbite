@@ -1,57 +1,89 @@
-import React from 'react';
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+const stats = [
+  { label: "Patties Smashed to Perfection", value: "4.5M+" },
+  { label: "Average Kitchen to Doorstep", value: "< 18 Min" },
+  { label: "Grass-Fed Prime Beef Blends", value: "100%" },
+  { label: "Nationwide Kitchen Hubs", value: "24" },
+];
 
 export default function AboutSwiftBite() {
   return (
-    <>
-      {/**/}
-<section className="w-full py-space-xl px-margin-mobile lg:px-margin bg-surface">
-<div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
-<div className="lg:col-span-6 flex flex-col">
-<span className="font-label-md text-label-md text-primary-container uppercase tracking-widest font-bold">The Origin Story</span>
-<h2 className="font-headline-xl text-headline-xl-mobile lg:text-headline-xl uppercase text-on-surface mt-space-xs mb-space-md">Good Food. Good Mood.</h2>
-<p className="font-body-xl text-body-xl text-on-surface-variant mb-space-md leading-relaxed">
-          Founded on the quiet obsession that high-speed dining should never mean cutting corners. SwiftBite started in a single bustling downtown alley kitchen with one roaring cast-iron flat top and a relentless passion for deep, unapologetic flavor.
-        </p>
-<p className="font-body-md text-body-md text-on-surface-variant mb-space-lg leading-relaxed">
-          Today, we blend high-velocity ordering tech with Michelin-trained kitchen fundamentals: custom daily butchered meat blends, fresh heirloom produce, and our bespoke 24-hour dough fermentation process.
-        </p>
-{/**/}
-<div className="grid grid-cols-2 gap-space-md p-space-md rounded-xl bg-surface-container-low shadow-sm">
-<div>
-<div className="font-headline-xl text-headline-xl text-primary-container font-extrabold">4.5M+</div>
-<div className="font-body-sm text-body-sm text-on-surface">Patties Smashed to Perfection</div>
-</div>
-<div>
-<div className="font-headline-xl text-headline-xl text-primary-container font-extrabold">&lt; 18 Min</div>
-<div className="font-body-sm text-body-sm text-on-surface">Average Kitchen to Doorstep</div>
-</div>
-<div>
-<div className="font-headline-xl text-headline-xl text-primary-container font-extrabold">100%</div>
-<div className="font-body-sm text-body-sm text-on-surface">Grass-Fed Prime Beef Blends</div>
-</div>
-<div>
-<div className="font-headline-xl text-headline-xl text-primary-container font-extrabold">24</div>
-<div className="font-body-sm text-body-sm text-on-surface">Nationwide Kitchen Hubs</div>
-</div>
-</div>
-</div>
-<div className="lg:col-span-6 relative">
-<div className="relative rounded-2xl overflow-hidden shadow-2xl bg-surface-container-low">
-<img className="w-full h-[460px] object-cover" data-alt="A focused head chef searing gourmet burgers on an ultra-hot commercial flat top griddle with intense steam, fiery embers, and vibrant golden lighting reflecting off stainless steel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnQz9-UaJT4NmdeOsjrwbgXSIEQ7Tiwte1ibfHA5HOmom66o8wKoIffNWWHIOIIVyMsI39PLGjjPPAB8xlwmcUxZ48L-EwwhKa0mXmookwnub-4Qi3ao9NVa7n5R2to0GUz7NThM_fwefDsz6Otc0RI5cuBuF_0DwqYZ6IElLCVy15fxOqf7uRrqnXG4HGqrmGI4AzrPgajD3BvPU2Ogy-tEFFdfTnTDF1c3zVzIGK1K7ooOfPJkE8"/>
-<div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
-<div className="absolute bottom-6 left-6 right-6 p-space-md rounded-xl bg-surface/90 backdrop-blur-md shadow-lg">
-<p className="font-body-md text-body-md text-on-surface italic mb-2">
+    <section className="relative w-full bg-black text-[#e5e2e1] py-32 overflow-hidden border-t border-[#FFD700]/20">
+      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        
+        {/* Visual Side */}
+        <div className="relative h-[500px] lg:h-[700px] w-full group">
+          <div className="absolute inset-0 bg-[#FFD700] transform -translate-x-4 -translate-y-4 transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0" />
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            <Image 
+              src="/images/kitchen.png" 
+              alt="SwiftBite Kitchen Origin" 
+              fill 
+              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+            />
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700" />
+          </div>
+          
+          {/* Manifesto Quote Overlay */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="absolute bottom-10 -right-10 lg:-right-20 z-20 bg-black border-l-4 border-[#FFD700] p-8 w-[80%] shadow-2xl"
+          >
+            <p className="font-[family-name:var(--font-epilogue)] text-xl md:text-2xl font-bold leading-tight mb-4">
               "We treat a midnight smash burger with the same technical devotion as a three-course tasting menu."
             </p>
-<div className="flex items-center gap-space-xs">
-<span className="font-label-lg text-label-lg text-primary-container font-bold">Marcus Vance</span>
-<span className="text-on-surface-variant font-body-sm text-body-sm">• Culinary Director &amp; Co-Founder</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-    </>
+            <div className="text-[#FFD700] text-sm font-bold tracking-widest uppercase">
+              <span className="block text-white">Marcus Vance</span>
+              Culinary Director & Co-Founder
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Text Side */}
+        <div className="flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-4">The Origin Story</h2>
+            <h3 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-black tracking-tighter uppercase mb-8 leading-[0.9]">
+              GOOD FOOD.<br/>GOOD MOOD.
+            </h3>
+            
+            <p className="text-xl leading-relaxed text-gray-400 mb-6 font-medium">
+              Founded on the quiet obsession that high-speed dining should never mean cutting corners. SwiftBite started in a single bustling downtown alley kitchen with one roaring cast-iron flat top and a relentless passion for deep, unapologetic flavor.
+            </p>
+            
+            <p className="text-xl leading-relaxed text-gray-400 mb-12 font-medium">
+              Today, we blend high-velocity ordering tech with Michelin-trained kitchen fundamentals: custom daily butchered meat blends, fresh heirloom produce, and our bespoke 24-hour dough fermentation process.
+            </p>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-x-8 gap-y-10">
+              {stats.map((stat, i) => (
+                <motion.div 
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <div className="text-[#FFD700] font-[family-name:var(--font-epilogue)] text-4xl md:text-5xl font-black mb-2">{stat.value}</div>
+                  <div className="text-sm font-bold tracking-widest uppercase text-gray-500">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+      </div>
+    </section>
   );
 }
