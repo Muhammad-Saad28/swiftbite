@@ -15,6 +15,7 @@ export default function Header() {
   ];
 
   const [isVisible, setIsVisible] = useState(pathname !== '/');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
 
@@ -95,8 +96,32 @@ export default function Header() {
               <span className="material-symbols-outlined text-[16px]">chat</span>
               WHATSAPP
             </Link>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="xl:hidden flex items-center justify-center text-white ml-2" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <span className="material-symbols-outlined text-[32px]">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="xl:hidden absolute top-[100%] left-0 right-0 bg-[#1e1e1e]/95 backdrop-blur-xl border-b border-white/5 py-4 px-8 flex flex-col gap-4 shadow-xl">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.path} 
+                href={link.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-white font-bold text-lg uppercase tracking-widest py-3 border-b border-white/5 last:border-0"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
     </>
   );
