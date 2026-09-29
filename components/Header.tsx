@@ -33,18 +33,15 @@ export default function Header() {
 
     const handleShow = () => setIsVisible(true);
     const handleHide = () => setIsVisible(false);
-    const handleCartAdd = () => setCartCount(JSON.parse(localStorage.getItem('cart') || '[]').length);
     const handleWishlistAdd = () => setWishlistCount(JSON.parse(localStorage.getItem('wishlist') || '[]').length);
 
     window.addEventListener('header:show', handleShow);
     window.addEventListener('header:hide', handleHide);
-    window.addEventListener('cart:add', handleCartAdd);
     window.addEventListener('wishlist:add', handleWishlistAdd);
 
     return () => {
       window.removeEventListener('header:show', handleShow);
       window.removeEventListener('header:hide', handleHide);
-      window.removeEventListener('cart:add', handleCartAdd);
       window.removeEventListener('wishlist:add', handleWishlistAdd);
     };
   }, [pathname]);
