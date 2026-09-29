@@ -18,7 +18,7 @@ export default function CheckoutPage() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
   };
 
   return (
@@ -148,7 +148,7 @@ export default function CheckoutPage() {
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, type: "spring" }}
+              transition={{ duration: 0.6, type: "spring" as const }}
               className="lg:col-span-5"
             >
               <div className="bg-surface-container rounded-3xl p-space-lg shadow-xl sticky top-28 border border-surface-container-high">

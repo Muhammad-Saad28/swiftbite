@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 bg-[#1e1e1e]/95 backdrop-blur-xl border-b border-white/5 transition-transform duration-700 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/5 transition-transform duration-700 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="h-24 w-full px-8 lg:px-24 flex items-center justify-between">
           <div className="flex items-center gap-space-sm flex-1 justify-start shrink-0">
             <Link className="flex items-center gap-space-xs" href="/">
@@ -109,7 +109,7 @@ export default function Header() {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden absolute top-[100%] left-0 right-0 bg-[#1e1e1e]/95 backdrop-blur-xl border-b border-white/5 py-4 px-8 flex flex-col gap-4 shadow-xl">
+          <div className="xl:hidden absolute top-[100%] left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/5 py-4 px-8 flex flex-col gap-4 shadow-xl">
             {navLinks.map((link) => (
               <Link 
                 key={link.path} 
