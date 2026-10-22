@@ -79,12 +79,22 @@ export default function Footer() {
               Lahore, PK
             </p>
             <div className="flex flex-col gap-1 mt-2 text-xs">
-              <a href="tel:03212490006" className="text-white hover:text-[#FFD700] transition-colors">
-                0321-2490006
-              </a>
-              <a href="tel:03064656951" className="text-white hover:text-[#FFD700] transition-colors">
-                0306-4656951
-              </a>
+              <div className="flex items-center gap-2">
+                <a href="tel:03212490006" className="text-white hover:text-[#FFD700] transition-colors">
+                  0321-2490006
+                </a>
+                <a href="https://wa.me/923212490006" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-bold text-[10px] uppercase">
+                  (WhatsApp)
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <a href="tel:03064656951" className="text-white hover:text-[#FFD700] transition-colors">
+                  0306-4656951
+                </a>
+                <a href="https://wa.me/923064656951" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 font-bold text-[10px] uppercase">
+                  (WhatsApp)
+                </a>
+              </div>
               <span className="text-gray-500 text-[11px] mt-1">Daily: 3:00 PM – 3:00 AM</span>
             </div>
           </div>

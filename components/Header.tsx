@@ -86,10 +86,15 @@ export default function Header() {
             </div>
 
             {/* WhatsApp Button */}
-            <Link className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full bg-gradient-to-r from-[#ffb800] to-[#e0a200] hover:from-[#ffc326] hover:to-[#ffb800] text-black font-bold text-[11px] uppercase tracking-widest shadow-[0_4px_14px_rgba(255,184,0,0.39)] transition-transform active:scale-95 gap-2" href="#">
+            <a 
+              className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full bg-gradient-to-r from-[#ffb800] to-[#e0a200] hover:from-[#ffc326] hover:to-[#ffb800] text-black font-bold text-[11px] uppercase tracking-widest shadow-[0_4px_14px_rgba(255,184,0,0.39)] transition-transform active:scale-95 gap-2" 
+              href="https://wa.me/923212490006"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span className="material-symbols-outlined text-[16px]">chat</span>
               WHATSAPP
-            </Link>
+            </a>
 
             {/* Mobile Menu Button */}
             <button 
