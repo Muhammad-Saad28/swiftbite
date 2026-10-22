@@ -1,36 +1,120 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useCart } from "../CartContext";
+import { supabase } from "../../lib/supabase";
 
-const options = {
-  mains: [
-    { id: "zinger", name: "🍔 Zinger", image: "/images/zinger.png" },
-    { id: "beef", name: "🍔 Beef Burger", image: "/images/beef-burger.png" },
-    { id: "wrap", name: "🌯 Chicken Wrap", image: "/images/spicy_wrap.png" },
-  ],
-  sauces: [
-    { id: "mayo", name: "Classic Mayo", color: "bg-white" },
-    { id: "spicy", name: "Spicy Sriracha", color: "bg-red-500" },
-    { id: "bbq", name: "Smoky BBQ", color: "bg-orange-800" },
-  ],
-  extras: [
-    { id: "cheese", name: "Extra Cheese (Rs. 100)" },
-    { id: "jalapeno", name: "Jalapeños (Rs. 80)" },
-    { id: "chicken", name: "Extra Patty (Rs. 250)" },
-  ]
-};
+interface MainOption {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+}
+
+interface SauceOption {
+  id: string;
+  name: string;
+  color: string;
+}
+
+const fallbackMains: MainOption[] = [
+  { id: "f0000000-0000-0000-0000-000000000003", name: "🍔 Zinger Burger", price: 400, image: "/images/zinger.png" },
+  { id: "f0000000-0000-0000-0000-000000000008", name: "🍔 Beef Burger", price: 600, image: "/images/beef-burger.png" },
+  { id: "f0000000-0000-0000-0000-00000000001f", name: "🌯 Tortilla Wrap", price: 600, image: "/images/spicy_wrap.png" },
+];
+
+const fallbackSauces: SauceOption[] = [
+  { id: "sriracha", name: "Spicy Sriracha", color: "bg-red-500" },
+  { id: "garlic-mayo", name: "Garlic Mayo", color: "bg-white" },
+  { id: "peri-peri", name: "Peri Peri", color: "bg-amber-600" },
+  { id: "dynamite", name: "Dynamite Sauce", color: "bg-orange-500" },
+  { id: "honey-mustard", name: "Honey Mustard", color: "bg-yellow-400" },
+];
+
+const extrasList = [
+  { id: "cheese", name: "Extra Cheese (+Rs. 100)", price: 100 },
+  { id: "jalapeno", name: "Jalapeños (+Rs. 80)", price: 80 },
+  { id: "patty", name: "Extra Patty (+Rs. 250)", price: 250 },
+];
 
 export default function BuildYourBite() {
   const [step, setStep] = useState(1);
-  const [selection, setSelection] = useState({
-    main: options.mains[0],
-    sauce: options.sauces[0],
-    extras: [] as string[]
+  const [mains, setMains] = useState<MainOption[]>(fallbackMains);
+  const [sauces, setSauces] = useState<SauceOption[]>(fallbackSauces);
+
+  const [selection, setSelection] = useState<{
+    main: MainOption;
+    sauce: SauceOption;
+    extras: string[];
+  }>({
+    main: fallbackMains[0],
+    sauce: fallbackSauces[0],
+    extras: []
   });
+
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    async function loadMainsAndSauces() {
+      try {
+        // Fetch mains from DB (Zinger Burger, Beef Burger, Special Tortilla Wrap)
+        const { data: mainData } = await supabase
+          .from('menu_items')
+          .select('id, name, price, image')
+          .in('name', ['Zinger Burger', 'Beef Burger', 'Special Tortilla Wrap']);
+
+        if (mainData && mainData.length > 0) {
+          const mappedMains: MainOption[] = mainData.map((m: any) => ({
+            id: m.id,
+            name: m.name.toLowerCase().includes('wrap') ? `🌯 ${m.name}` : `🍔 ${m.name}`,
+            price: m.price,
+            image: m.name.toLowerCase().includes('beef')
+              ? '/images/beef-burger.png'
+              : m.name.toLowerCase().includes('wrap')
+              ? '/images/spicy_wrap.png'
+              : '/images/zinger.png'
+          }));
+          setMains(mappedMains);
+          setSelection(prev => ({
+            ...prev,
+            main: mappedMains[0]
+          }));
+        }
+
+        // Fetch sauces from DB
+        const { data: sauceData } = await supabase
+          .from('menu_items')
+          .select('id, name, price, categories!inner(name)')
+          .eq('categories.name', 'Sauces and Add-ons');
+
+        if (sauceData && sauceData.length > 0) {
+          const sauceColorMap: Record<string, string> = {
+            'Sriracha Sauce': 'bg-red-500',
+            'Garlic Mayo': 'bg-white',
+            'Peri Peri Sauce': 'bg-amber-600',
+            'Dynamite Sauce': 'bg-orange-500',
+            'Honey Mustard': 'bg-yellow-400'
+          };
+          const mappedSauces: SauceOption[] = sauceData.map((s: any) => ({
+            id: s.id,
+            name: s.name,
+            color: sauceColorMap[s.name] || 'bg-amber-400'
+          }));
+          setSauces(mappedSauces);
+          setSelection(prev => ({
+            ...prev,
+            sauce: mappedSauces[0]
+          }));
+        }
+      } catch (e) {
+        console.error("Error loading BuildYourBite items from DB:", e);
+      }
+    }
+    loadMainsAndSauces();
+  }, []);
 
   const toggleExtra = (extraId: string) => {
     setSelection(prev => {
@@ -42,29 +126,23 @@ export default function BuildYourBite() {
     });
   };
 
-  const { addToCart } = useCart();
   const handleNext = () => {
-    if (step < 3) setStep(step + 1);
-    else {
-      // Logic to add to cart goes here
-      let basePrice = 650;
-      if (selection.main.id === 'beef') basePrice = 850;
-      if (selection.main.id === 'wrap') basePrice = 500;
-      
+    if (step < 3) {
+      setStep(step + 1);
+    } else {
+      const basePrice = selection.main.price || 400;
       const extrasPrice = selection.extras.reduce((sum, extraId) => {
-        if (extraId === 'cheese') return sum + 100;
-        if (extraId === 'jalapeno') return sum + 80;
-        if (extraId === 'chicken') return sum + 250;
-        return sum;
+        const found = extrasList.find(e => e.id === extraId);
+        return sum + (found ? found.price : 0);
       }, 0);
 
       addToCart({
         id: `custom-${selection.main.id}-${Date.now()}`,
-        name: `CUSTOM ${selection.main.name.replace(/🍔 |🌯 /g, '')}`,
+        name: `CUSTOM ${selection.main.name.replace(/🍔 |🌯 /g, '')} (${selection.sauce.name})`,
         price: basePrice + extrasPrice,
         image: selection.main.image
       });
-      
+
       // Reset form
       setStep(1);
     }
@@ -98,45 +176,66 @@ export default function BuildYourBite() {
             )}
             {selection.extras.includes("cheese") && (
               <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-10 left-10 bg-yellow-400 text-black px-3 py-1 font-bold rounded-md rotate-[-15deg] shadow-lg">
-                + CHEESE
+                🧀 EXTRA CHEESE
+              </motion.div>
+            )}
+            {selection.extras.includes("jalapeno") && (
+              <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="absolute top-10 left-10 bg-green-500 text-white px-3 py-1 font-bold rounded-md rotate-[10deg] shadow-lg">
+                🌶️ JALAPEÑOS
+              </motion.div>
+            )}
+            {selection.extras.includes("patty") && (
+              <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-20 right-10 bg-red-600 text-white px-3 py-1 font-bold rounded-md rotate-[5deg] shadow-lg">
+                🥩 EXTRA PATTY
               </motion.div>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Controls Side */}
-      <div className="w-full md:w-1/2 p-10 md:p-20 z-10 flex flex-col justify-center">
-        <h2 className="font-[family-name:var(--font-epilogue)] text-5xl md:text-7xl font-extrabold tracking-tighter mb-2">BUILD YOUR BITE</h2>
-        <div className="w-20 h-1 bg-[#FFD700] mb-12"></div>
+      {/* Control Builder Side */}
+      <div className="w-full md:w-1/2 p-10 flex flex-col justify-center max-w-lg z-10">
+        <h2 className="text-[#FFD700] text-sm font-bold tracking-[0.2em] mb-2 uppercase">Custom Flavor Lab</h2>
+        <h1 className="font-[family-name:var(--font-epilogue)] text-4xl md:text-5xl font-black uppercase tracking-tight mb-8">
+          BUILD YOUR<br/>PERFECT BITE.
+        </h1>
 
-        {/* Step 1: Main */}
+        {/* Multi-step logic */}
+        <div className="flex gap-2 mb-8">
+          {[1, 2, 3].map((s) => (
+            <div 
+              key={s} 
+              className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${s <= step ? 'bg-[#FFD700]' : 'bg-gray-800'}`}
+            />
+          ))}
+        </div>
+
         {step === 1 && (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-            <h3 className="text-xl text-[#FFD700] font-bold mb-6 tracking-widest uppercase">1. Choose Your Main</h3>
+            <h3 className="text-xl text-[#FFD700] font-bold mb-6 tracking-widest uppercase">1. Choose The Core Base</h3>
             <div className="flex flex-col gap-4">
-              {options.mains.map(main => (
+              {mains.map(main => (
                 <button 
                   key={main.id} 
-                  onClick={() => setSelection(prev => ({ ...prev, main }))}
-                  className={`text-left p-6 border-2 transition-all font-bold text-xl uppercase ${selection.main.id === main.id ? 'border-[#FFD700] text-[#FFD700] bg-[#FFD700]/10' : 'border-gray-800 hover:border-gray-600'}`}
+                  onClick={() => setSelection({ ...selection, main })}
+                  className={`text-left p-6 border-2 transition-all font-bold text-xl uppercase flex justify-between items-center ${selection.main.id === main.id ? 'border-[#FFD700] text-[#FFD700] bg-[#FFD700]/10' : 'border-gray-800 hover:border-gray-600'}`}
                 >
-                  {main.name}
+                  <span>{main.name}</span>
+                  <span className="text-sm font-semibold opacity-80">Rs. {main.price}</span>
                 </button>
               ))}
             </div>
           </motion.div>
         )}
 
-        {/* Step 2: Sauce */}
         {step === 2 && (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-            <h3 className="text-xl text-[#FFD700] font-bold mb-6 tracking-widest uppercase">2. Choose Your Sauce</h3>
+            <h3 className="text-xl text-[#FFD700] font-bold mb-6 tracking-widest uppercase">2. Inject Flavor Sauce</h3>
             <div className="flex flex-col gap-4">
-              {options.sauces.map(sauce => (
+              {sauces.map(sauce => (
                 <button 
                   key={sauce.id} 
-                  onClick={() => setSelection(prev => ({ ...prev, sauce }))}
+                  onClick={() => setSelection({ ...selection, sauce })}
                   className={`flex items-center gap-4 text-left p-6 border-2 transition-all font-bold text-xl uppercase ${selection.sauce.id === sauce.id ? 'border-[#FFD700] text-[#FFD700] bg-[#FFD700]/10' : 'border-gray-800 hover:border-gray-600'}`}
                 >
                   <div className={`w-6 h-6 rounded-full border border-black ${sauce.color}`}></div>
@@ -147,12 +246,11 @@ export default function BuildYourBite() {
           </motion.div>
         )}
 
-        {/* Step 3: Extras */}
         {step === 3 && (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
             <h3 className="text-xl text-[#FFD700] font-bold mb-6 tracking-widest uppercase">3. Make It Extra</h3>
             <div className="flex flex-col gap-4">
-              {options.extras.map(extra => (
+              {extrasList.map(extra => (
                 <button 
                   key={extra.id} 
                   onClick={() => toggleExtra(extra.id)}

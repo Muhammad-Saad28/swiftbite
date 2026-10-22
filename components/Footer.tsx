@@ -72,11 +72,21 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <h4 className="text-[#FFD700] mb-2">Flagship</h4>
-            <p className="text-gray-500 leading-relaxed">M.M. Alam Road,<br/>Gulberg III,<br/>Lahore, PK</p>
-            <a href="tel:+923054449151" className="text-white hover:text-[#FFD700] transition-colors mt-2">
-              +92 305 4449151
-            </a>
+            <h4 className="text-[#FFD700] mb-2">Location</h4>
+            <p className="text-gray-500 leading-relaxed text-xs">
+              Main G.T. Road, near Orange Line Station,<br/>
+              Dera Gujran, Quaid-e-Azam Interchange,<br/>
+              Lahore, PK
+            </p>
+            <div className="flex flex-col gap-1 mt-2 text-xs">
+              <a href="tel:03212490006" className="text-white hover:text-[#FFD700] transition-colors">
+                0321-2490006
+              </a>
+              <a href="tel:03064656951" className="text-white hover:text-[#FFD700] transition-colors">
+                0306-4656951
+              </a>
+              <span className="text-gray-500 text-[11px] mt-1">Daily: 3:00 PM – 3:00 AM</span>
+            </div>
           </div>
 
         </div>

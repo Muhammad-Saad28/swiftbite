@@ -1,16 +1,56 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { ChevronRight } from "lucide-react";
+import { useCart } from "../CartContext";
+import { supabase } from "../../lib/supabase";
 
 export default function SwiftBiteDrop() {
+  const { addToCart } = useCart();
+  const [deal, setDeal] = useState({
+    id: "f0000000-0000-0000-0000-000000000030",
+    name: "Deal 1 — Zinger Combo",
+    price: 550,
+    description: "1 Zinger Burger + 1 Regular Fries + 1 Regular Drink",
+    image: "/images/zinger.png"
+  });
+
+  useEffect(() => {
+    async function fetchDeal() {
+      try {
+        const { data } = await supabase
+          .from('menu_items')
+          .select('id, name, price, description, image')
+          .ilike('name', '%Zinger Combo%')
+          .limit(1)
+          .single();
+
+        if (data) {
+          setDeal({
+            id: data.id,
+            name: data.name,
+            price: data.price,
+            description: data.description || "1 Zinger Burger + 1 Regular Fries + 1 Regular Drink",
+            image: data.image || "/images/zinger.png"
+          });
+        }
+      } catch (err) {
+        console.error("Error fetching deal from DB:", err);
+      }
+    }
+    fetchDeal();
+  }, []);
+
+  const itemsList = deal.description.split('+').map(s => s.trim()).filter(Boolean);
+
   return (
     <section className="w-full bg-[#FFD700] text-black py-20 px-6 overflow-hidden relative">
       {/* Background Graphic */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 pointer-events-none">
-        <h1 className="text-[20vw] font-black tracking-tighter whitespace-nowrap">DROP 001</h1>
+        <h1 className="text-[20vw] font-black tracking-tighter whitespace-nowrap">DEAL 001</h1>
       </div>
 
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between relative z-10">
@@ -23,19 +63,29 @@ export default function SwiftBiteDrop() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-black font-bold tracking-[0.3em] uppercase mb-4">SwiftBite Drop 001</p>
+            <p className="text-black font-bold tracking-[0.3em] uppercase mb-4">
+              SwiftBite Signature Combo • Rs. {deal.price.toLocaleString()}
+            </p>
             <h2 className="font-[family-name:var(--font-epilogue)] text-6xl md:text-8xl font-extrabold tracking-tighter uppercase leading-[0.9] mb-6">
               THE ZINGER<br/>COMBO
             </h2>
             
             <div className="flex flex-col gap-2 font-bold text-xl mb-10 tracking-widest uppercase">
-              <p>+ Zinger Burger</p>
-              <p>+ Loaded Fries</p>
-              <p>+ Signature Drink</p>
+              {itemsList.map((item, idx) => (
+                <p key={idx}>+ {item}</p>
+              ))}
             </div>
 
-            <MagneticButton className="bg-black text-[#FFD700] px-10 py-5 font-bold tracking-widest uppercase text-lg border border-black hover:bg-transparent hover:text-black transition-colors">
-              ORDER NOW <ChevronRight className="inline-block ml-2 w-6 h-6" />
+            <MagneticButton 
+              onClick={() => addToCart({
+                id: deal.id,
+                name: deal.name,
+                price: deal.price,
+                image: deal.image
+              })}
+              className="bg-black text-[#FFD700] px-10 py-5 font-bold tracking-widest uppercase text-lg border border-black hover:bg-transparent hover:text-black transition-colors"
+            >
+              ORDER NOW (RS. {deal.price.toLocaleString()}) <ChevronRight className="inline-block ml-2 w-6 h-6" />
             </MagneticButton>
           </motion.div>
         </div>
@@ -51,7 +101,7 @@ export default function SwiftBiteDrop() {
           >
             <Image 
               src="/images/zinger.png" 
-              alt="The Zinger Combo" 
+              alt={deal.name} 
               fill 
               className="object-contain drop-shadow-2xl scale-125"
             />

@@ -73,6 +73,11 @@ export default function Header() {
 
           <div className="flex items-center gap-6 xl:gap-8 flex-1 justify-end shrink-0">
             <div className="flex items-center gap-4">
+              {/* Search Icon */}
+              <Link href="/search" aria-label="Search Menu" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors">
+                <span className="material-symbols-outlined text-[24px]">search</span>
+              </Link>
+
               {/* Heart Icon */}
             <Link href="/wishlist" aria-label="Favorites" className="flex items-center justify-center text-white hover:text-[#ffb800] transition-colors relative">
               <span className="material-symbols-outlined text-[24px]">favorite</span>

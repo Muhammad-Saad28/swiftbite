@@ -7,13 +7,15 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-export default function MagneticButton({ children, className = "", onClick }: MagneticButtonProps) {
+export default function MagneticButton({ children, className = "", onClick, disabled }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouse = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current!.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
@@ -28,13 +30,14 @@ export default function MagneticButton({ children, className = "", onClick }: Ma
   return (
     <motion.button
       ref={ref}
+      disabled={disabled}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       onClick={onClick}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={disabled ? {} : { scale: 1.05 }}
+      whileTap={disabled ? {} : { scale: 0.95 }}
       className={`relative overflow-hidden group ${className}`}
     >
       <span className="relative z-10 flex items-center justify-center gap-2">

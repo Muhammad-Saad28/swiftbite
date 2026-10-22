@@ -35,21 +35,21 @@ export default function LocationContact() {
 
             <h3 className="text-[#FFD700] text-sm font-bold tracking-[0.3em] uppercase mb-12">Hub Status</h3>
             
-            <h4 className="font-[family-name:var(--font-epilogue)] text-4xl md:text-5xl font-black uppercase mb-2">Gulberg III Flagship</h4>
-            <p className="text-gray-400 font-bold tracking-widest uppercase mb-10 text-sm">M.M. Alam Road, Lahore, Pakistan</p>
+            <h4 className="font-[family-name:var(--font-epilogue)] text-4xl md:text-5xl font-black uppercase mb-2">Swift Bite Lahore</h4>
+            <p className="text-gray-400 font-bold tracking-widest uppercase mb-6 text-sm">Main G.T. Road, near Orange Line Station, Dera Gujran, Quaid-e-Azam Interchange, Lahore</p>
 
-            <div className="flex flex-col gap-6 font-mono text-sm uppercase tracking-widest text-gray-500 mb-12">
+            <div className="flex flex-col gap-4 font-mono text-sm uppercase tracking-widest text-gray-400 mb-8">
               <div className="flex justify-between border-b border-gray-800 pb-2">
-                <span>Mon - Thu</span>
-                <span className="text-white font-bold">11:00 AM – 11:00 PM</span>
+                <span>Daily Kitchen Hours</span>
+                <span className="text-[#FFD700] font-bold">3:00 PM – 3:00 AM</span>
               </div>
               <div className="flex justify-between border-b border-gray-800 pb-2">
-                <span className="text-[#FFD700]">Fri - Sat (Late Night)</span>
-                <span className="text-[#FFD700] font-bold">11:00 AM – 01:00 AM</span>
+                <span>Order Lines</span>
+                <span className="text-white font-bold">0321-2490006 / 0306-4656951</span>
               </div>
-              <div className="flex justify-between border-b border-gray-800 pb-2">
-                <span>Sunday</span>
-                <span className="text-white font-bold">11:00 AM – 10:00 PM</span>
+              <div className="flex flex-col border-b border-gray-800 pb-2 gap-1">
+                <span className="text-[#FFD700]">Delivery Coverage Areas:</span>
+                <span className="text-white font-normal text-xs normal-case">Dera Gujran, Manawan, Daroghawala, Lakhodair, Mehmood Booti</span>
               </div>
             </div>
 
@@ -84,15 +84,15 @@ export default function LocationContact() {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
-            <a href="tel:+923054449151" className="flex-1 min-w-[200px] border-2 border-gray-800 text-center py-5 font-bold tracking-widest uppercase hover:border-[#FFD700] hover:text-[#FFD700] transition-colors">
-              Direct Line
+            <a href="tel:03212490006" className="flex-1 min-w-[200px] border-2 border-gray-800 text-center py-5 font-bold tracking-widest uppercase hover:border-[#FFD700] hover:text-[#FFD700] transition-colors">
+              Call 0321-2490006
             </a>
-            <button className="flex-1 min-w-[200px] border-2 border-gray-800 text-center py-5 font-bold tracking-widest uppercase hover:border-[#FFD700] hover:text-[#FFD700] transition-colors">
-              Get Directions
-            </button>
-            <button className="flex-1 min-w-[200px] border-2 border-[#FFD700] bg-[#FFD700]/5 text-[#FFD700] text-center py-5 font-bold tracking-widest uppercase hover:bg-[#FFD700] hover:text-black transition-colors">
-              Book Table
-            </button>
+            <a href="https://wa.me/923212490006" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[200px] border-2 border-green-600 bg-green-950/20 text-green-400 text-center py-5 font-bold tracking-widest uppercase hover:bg-green-600 hover:text-black transition-colors">
+              WhatsApp Order
+            </a>
+            <a href="tel:03064656951" className="flex-1 min-w-[200px] border-2 border-[#FFD700] bg-[#FFD700]/5 text-[#FFD700] text-center py-5 font-bold tracking-widest uppercase hover:bg-[#FFD700] hover:text-black transition-colors">
+              0306-4656951
+            </a>
           </div>
 
         </motion.div>

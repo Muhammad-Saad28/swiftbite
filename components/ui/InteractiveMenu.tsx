@@ -1,65 +1,123 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import InteractiveProductImage from "./InteractiveProductImage";
 import MagneticButton from "./MagneticButton";
 import { ChevronRight } from "lucide-react";
 import { useCart } from "../CartContext";
+import { supabase } from "../../lib/supabase";
 
-// Mock data mapping to the 5 world categories
-const menuItems = [
+interface InteractiveItem {
+  id: string;
+  name: string;
+  price: string;
+  rawPrice: number;
+  image: string;
+  ingredients: string[];
+  category: string;
+}
+
+const fallbackItems: InteractiveItem[] = [
   {
-    id: "1",
-    name: "ZINGER STACK",
-    price: "Rs. 650",
-    image: "/images/zinger.png",
-    ingredients: ["CRISPY CHICKEN", "LETTUCE", "SIGNATURE MAYO", "CHEDDAR"],
-    category: "01 — THE CRUNCH",
-  },
-  {
-    id: "2",
-    name: "BEEF SUPREME",
-    price: "Rs. 850",
-    image: "/images/beef-burger.png",
-    ingredients: ["SMASHED BEEF", "CARAMELIZED ONIONS", "BBQ SAUCE"],
-    category: "02 — THE STACK",
-  },
-  {
-    id: "3",
-    name: "DIABLO WRAP",
-    price: "Rs. 500",
-    image: "/images/spicy_wrap.png",
-    ingredients: ["SPICY TENDERS", "JALAPEÑOS", "SRIRACHA MAYO"],
-    category: "03 — THE HEAT",
-  },
-  {
-    id: "4",
-    name: "TRUFFLE FRIES",
+    id: "f0000000-0000-0000-0000-000000000003",
+    name: "ZINGER BURGER",
     price: "Rs. 400",
-    image: "/images/loaded.png",
-    ingredients: ["CRISPY FRIES", "TRUFFLE OIL", "PARMESAN"],
-    category: "04 — THE SIDEKICK",
+    rawPrice: 400,
+    image: "/images/zinger.png",
+    ingredients: ["CRISPY ZINGER FILLET", "CRUNCHY LETTUCE", "SPICY HOUSE MAYO", "TOASTED SESAME BUN"],
+    category: "01 — BURGERS",
   },
   {
-    id: "5",
-    name: "CRAFT COLA",
-    price: "Rs. 250",
+    id: "f0000000-0000-0000-0000-000000000009",
+    name: "SWIFT SPECIAL MIGHTY",
+    price: "Rs. 700",
+    rawPrice: 700,
+    image: "/images/beef-burger.png",
+    ingredients: ["DOUBLE PATTY", "DOUBLE MELTED CHEESE", "SECRET SWIFT SAUCE", "CARAMELIZED ONIONS"],
+    category: "02 — BURGERS",
+  },
+  {
+    id: "f0000000-0000-0000-0000-000000000017",
+    name: "ROYAL CROWN CRUST",
+    price: "Rs. 1,400",
+    rawPrice: 1400,
+    image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80",
+    ingredients: ["CHICKEN TIKKA", "CHEESE STUFFED CROWN CRUST", "BLACK OLIVES", "BELL PEPPERS"],
+    category: "03 — PIZZA",
+  },
+  {
+    id: "f0000000-0000-0000-0000-000000000013",
+    name: "MALAI + TIKKA ROLL",
+    price: "Rs. 450",
+    rawPrice: 450,
+    image: "/images/spicy_wrap.png",
+    ingredients: ["CREAMY MALAI BOOTI", "SPICY RED TIKKA", "MINT CHUTNEY", "FLAKY CRISPY PARATHA"],
+    category: "04 — PARATHA ROLLS",
+  },
+  {
+    id: "f0000000-0000-0000-0000-00000000002a",
+    name: "LOADED FRIES",
+    price: "Rs. 650",
+    rawPrice: 650,
+    image: "/images/loaded.png",
+    ingredients: ["CRISPY FRIES", "CHEDDAR CHEESE SAUCE", "CHICKEN CHUNKS", "JALAPEÑOS"],
+    category: "05 — FRIES",
+  },
+  {
+    id: "f0000000-0000-0000-0000-000000000030",
+    name: "ZINGER COMBO DEAL",
+    price: "Rs. 550",
+    rawPrice: 550,
     image: "/images/signature_drink.png",
-    ingredients: ["ARTISAN COLA", "FRESH LEMON", "ICE"],
-    category: "05 — THE SIP",
+    ingredients: ["1 ZINGER BURGER", "1 REGULAR FRIES", "1 REGULAR DRINK"],
+    category: "06 — COMBO DEALS",
   },
 ];
 
 export default function InteractiveMenu() {
+  const [items, setItems] = useState<InteractiveItem[]>(fallbackItems);
   const [currentIndex, setCurrentIndex] = useState(0);
   const { addToCart } = useCart();
 
+  useEffect(() => {
+    async function fetchFromDB() {
+      try {
+        const { data } = await supabase
+          .from('menu_items')
+          .select('id, name, price, description, image, categories(name)')
+          .eq('featured', true)
+          .order('price');
+
+        if (data && data.length > 0) {
+          const mapped: InteractiveItem[] = data.map((d: any, idx: number) => {
+            const ingParts = d.description
+              ? d.description.split(/[,+]/).map((s: string) => s.trim().toUpperCase()).filter(Boolean)
+              : [d.name.toUpperCase()];
+            return {
+              id: d.id,
+              name: d.name.toUpperCase(),
+              price: `Rs. ${d.price.toLocaleString()}`,
+              rawPrice: d.price,
+              image: d.image || fallbackItems[0].image,
+              ingredients: ingParts.slice(0, 4),
+              category: `0${idx + 1} — ${(d.categories?.name || 'SELECTION').toUpperCase()}`
+            };
+          });
+          setItems(mapped);
+        }
+      } catch (err) {
+        console.error("Error loading interactive menu from database:", err);
+      }
+    }
+    fetchFromDB();
+  }, []);
+
   const nextItem = () => {
-    setCurrentIndex((prev) => (prev + 1) % menuItems.length);
+    setCurrentIndex((prev) => (prev + 1) % items.length);
   };
 
-  const currentItem = menuItems[currentIndex];
+  const currentItem = items[currentIndex] || fallbackItems[0];
 
   return (
     <section className="relative w-full h-[80vh] min-h-[600px] bg-black text-[#e5e2e1] overflow-hidden flex items-center justify-center">
@@ -121,7 +179,7 @@ export default function InteractiveMenu() {
                 onClick={() => addToCart({
                   id: currentItem.id,
                   name: currentItem.name,
-                  price: parseInt(currentItem.price.replace('Rs. ', '')),
+                  price: currentItem.rawPrice,
                   image: currentItem.image
                 })}
                 className="bg-[#FFD700] text-black px-8 py-4 font-bold text-lg rounded-none hover:bg-white transition-colors"

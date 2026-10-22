@@ -7,18 +7,40 @@ export type CartItem = {
   name: string;
   price: number;
   image?: string;
+  quantity?: number;
 };
 
 interface CartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (index: number) => void;
+  clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('cart');
+        return saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        console.error('Error loading cart from localStorage:', e);
+      }
+    }
+    return [];
+  });
+
+  // Keep localStorage synced whenever cart changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.dispatchEvent(new Event('cart:update'));
+    } catch (e) {
+      console.error('Error saving cart to localStorage:', e);
+    }
+  }, [cart]);
 
   const playAddSound = () => {
     try {
@@ -35,7 +57,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       osc.start();
       osc.stop(ctx.currentTime + 0.1);
     } catch (e) {
-      console.log('Audio error', e);
+      // Audio context might fail before user gesture; gracefully ignore
     }
   };
 
@@ -48,8 +70,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCart((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
@@ -62,3 +88,4 @@ export function useCart() {
   }
   return context;
 }
+
