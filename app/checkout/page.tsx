@@ -336,70 +336,70 @@ export default function CheckoutPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <div className="group relative">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#FFD700]">
+                  Full Name <span className="text-red-400">*</span>
+                </label>
                 <input 
                   type="text" 
                   required
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  placeholder=" " 
-                  className="peer w-full bg-transparent border-b-2 border-gray-800 text-white py-4 focus:outline-none focus:border-[#FFD700] transition-colors" 
+                  placeholder="e.g. Muhammad Saad" 
+                  className="w-full bg-[#111111] border border-zinc-800 text-white text-sm rounded-xl px-4 py-3.5 focus:outline-none focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] transition-all placeholder-zinc-600 font-medium" 
                 />
-                <label className="absolute left-0 top-4 text-gray-600 font-bold tracking-widest uppercase text-xs transition-all peer-focus:-top-2 peer-focus:text-[#FFD700] peer-focus:text-[10px] peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-[#FFD700] peer-not-placeholder-shown:text-[10px]">
-                  Full Name
-                </label>
               </div>
 
-              <div className="group relative mt-4">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#FFD700]">
+                  Delivery Address <span className="text-red-400">*</span>
+                </label>
                 <input 
                   type="text" 
                   required
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  placeholder=" " 
-                  className="peer w-full bg-transparent border-b-2 border-gray-800 text-white py-4 focus:outline-none focus:border-[#FFD700] transition-colors" 
+                  placeholder="e.g. House #172, Shan Street, Gujjar Pura, Lahore" 
+                  className="w-full bg-[#111111] border border-zinc-800 text-white text-sm rounded-xl px-4 py-3.5 focus:outline-none focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] transition-all placeholder-zinc-600 font-medium" 
                 />
-                <label className="absolute left-0 top-4 text-gray-600 font-bold tracking-widest uppercase text-xs transition-all peer-focus:-top-2 peer-focus:text-[#FFD700] peer-focus:text-[10px] peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-[#FFD700] peer-not-placeholder-shown:text-[10px]">
-                  Drop Coordinates (Delivery Address)
-                </label>
               </div>
 
-              <div className="group relative mt-4">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#FFD700]">
+                  Phone / WhatsApp Number <span className="text-red-400">*</span>
+                </label>
                 <input 
                   type="tel" 
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder=" " 
-                  className="peer w-full bg-transparent border-b-2 border-gray-800 text-white py-4 focus:outline-none focus:border-[#FFD700] transition-colors" 
+                  placeholder="e.g. 0305-4449151" 
+                  className="w-full bg-[#111111] border border-zinc-800 text-white text-sm rounded-xl px-4 py-3.5 focus:outline-none focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] transition-all placeholder-zinc-600 font-medium" 
                 />
-                <label className="absolute left-0 top-4 text-gray-600 font-bold tracking-widest uppercase text-xs transition-all peer-focus:-top-2 peer-focus:text-[#FFD700] peer-focus:text-[10px] peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-[#FFD700] peer-not-placeholder-shown:text-[10px]">
-                  Comms Link (Phone / WhatsApp Number)
-                </label>
               </div>
 
-              <div className="group relative mt-4">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                  Special Instructions <span className="text-zinc-600 text-[10px] lowercase tracking-normal">(optional)</span>
+                </label>
                 <input 
                   type="text" 
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder=" " 
-                  className="peer w-full bg-transparent border-b-2 border-gray-800 text-white py-4 focus:outline-none focus:border-[#FFD700] transition-colors" 
+                  placeholder="e.g. Ring bell, extra garlic sauce, call upon arrival" 
+                  className="w-full bg-[#111111] border border-zinc-800 text-white text-sm rounded-xl px-4 py-3.5 focus:outline-none focus:border-[#FFD700] focus:ring-1 focus:ring-[#FFD700] transition-all placeholder-zinc-600 font-medium" 
                 />
-                <label className="absolute left-0 top-4 text-gray-600 font-bold tracking-widest uppercase text-xs transition-all peer-focus:-top-2 peer-focus:text-[#FFD700] peer-focus:text-[10px] peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-[#FFD700] peer-not-placeholder-shown:text-[10px]">
-                  Special Instructions (Optional)
-                </label>
               </div>
 
-              <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 text-[11px] text-zinc-400 flex items-center gap-2">
+              <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-800/80 text-[11px] text-zinc-400 flex items-center gap-2 mt-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span>Orders are routed live to SwiftBite POS & sent to WhatsApp (0321-2490006).</span>
               </div>
 
               <MagneticButton 
                 disabled={isSubmitting || cart.length === 0}
-                className="bg-[#FFD700] text-black w-full py-6 font-black tracking-[0.2em] uppercase mt-4 hover:bg-white transition-colors flex items-center justify-center disabled:opacity-50"
+                className="bg-[#FFD700] text-black w-full py-5 font-black tracking-[0.2em] uppercase mt-2 hover:bg-white transition-colors flex items-center justify-center disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
