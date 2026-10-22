@@ -84,10 +84,7 @@ export default function CartPage() {
                 <span>Subtotal ({cart.length} items)</span>
                 <span>Rs. {total}</span>
               </div>
-              <div className="flex justify-between items-center font-bold text-sm text-gray-400 mb-8 uppercase tracking-widest">
-                <span>Taxes & Fees</span>
-                <span>Calculated at next step</span>
-              </div>
+
 
               <div className="flex justify-between items-baseline text-white mb-10 border-t border-gray-800 pt-6">
                 <span className="font-black text-3xl tracking-tight">TOTAL</span>
