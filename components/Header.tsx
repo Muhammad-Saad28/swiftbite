@@ -24,24 +24,12 @@ export default function Header() {
   useEffect(() => {
     setMounted(true);
     setWishlistCount(JSON.parse(localStorage.getItem('wishlist') || '[]').length);
+    setIsVisible(true);
 
-    if (pathname !== '/') {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-
-    const handleShow = () => setIsVisible(true);
-    const handleHide = () => setIsVisible(false);
     const handleWishlistAdd = () => setWishlistCount(JSON.parse(localStorage.getItem('wishlist') || '[]').length);
-
-    window.addEventListener('header:show', handleShow);
-    window.addEventListener('header:hide', handleHide);
     window.addEventListener('wishlist:add', handleWishlistAdd);
 
     return () => {
-      window.removeEventListener('header:show', handleShow);
-      window.removeEventListener('header:hide', handleHide);
       window.removeEventListener('wishlist:add', handleWishlistAdd);
     };
   }, [pathname]);
