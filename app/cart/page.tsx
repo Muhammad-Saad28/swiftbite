@@ -89,9 +89,9 @@ export default function CartPage() {
                 <span>Calculated at next step</span>
               </div>
 
-              <div className="flex justify-between items-center font-black text-4xl text-white mb-10 border-t border-gray-800 pt-6">
-                <span>TOTAL</span>
-                <span>Rs. {total}</span>
+              <div className="flex justify-between items-baseline text-white mb-10 border-t border-gray-800 pt-6">
+                <span className="font-black text-3xl tracking-tight">TOTAL</span>
+                <span className="font-black text-3xl font-mono text-white text-right">Rs. {total}</span>
               </div>
 
               {cart.length > 0 ? (
