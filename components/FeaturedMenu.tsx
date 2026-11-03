@@ -4,6 +4,8 @@ import { supabase } from '../lib/supabase';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useCart } from './CartContext';
+import PizzaSizeModal, { PizzaItemForModal } from './ui/PizzaSizeModal';
+import { isPizzaItem } from '../lib/pizza-sizes';
 
 interface FeaturedProduct {
   id: string;
@@ -11,18 +13,21 @@ interface FeaturedProduct {
   price: number;
   description: string;
   image: string;
+  category?: string;
 }
 
 export default function FeaturedMenu() {
   const [products, setProducts] = useState<FeaturedProduct[]>([]);
   const { addToCart } = useCart();
+  const [selectedPizza, setSelectedPizza] = useState<PizzaItemForModal | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     async function fetchFeatured() {
       try {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from('menu_items')
-          .select('id, name, price, description, image')
+          .select('id, name, price, description, image, categories(name)')
           .eq('featured', true)
           .eq('available', true)
           .limit(3);
@@ -34,7 +39,8 @@ export default function FeaturedMenu() {
               name: item.name,
               price: item.price,
               description: item.description || '',
-              image: item.image || 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80'
+              image: item.image || 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80',
+              category: Array.isArray(item.categories) ? item.categories[0]?.name : item.categories?.name
             }))
           );
         }
@@ -44,6 +50,27 @@ export default function FeaturedMenu() {
     }
     fetchFeatured();
   }, []);
+
+  const handleAction = (item: FeaturedProduct) => {
+    if (isPizzaItem(item.category, item.name)) {
+      setSelectedPizza({
+        id: item.id,
+        name: item.name,
+        category: item.category,
+        price: item.price,
+        description: item.description,
+        image: item.image
+      });
+      setIsModalOpen(true);
+    } else {
+      addToCart({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image
+      });
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -79,56 +106,71 @@ export default function FeaturedMenu() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md lg:gap-space-lg w-full mb-space-xl"
         >
-          {products.map((item) => (
-            <motion.div variants={itemVariants} key={item.id} className="group relative rounded-2xl bg-surface-container-low overflow-hidden border border-surface-container transition-all hover:border-primary-container/50 shadow-sm hover:shadow-xl hover:shadow-primary-container/5 flex flex-col">
-              <div className="relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden">
-                <img alt={item.name} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" src={item.image}/>
-                <motion.button 
-                  whileHover={{ scale: 1.1 }} 
-                  whileTap={{ scale: 0.9 }} 
-                  onClick={() => {
-                    const currentWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-                    if (!currentWishlist.some((i: any) => i.id === item.id)) {
-                      currentWishlist.push(item);
-                      localStorage.setItem('wishlist', JSON.stringify(currentWishlist));
-                      window.dispatchEvent(new Event('wishlist:add'));
-                    }
-                  }} 
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface/80 backdrop-blur-sm text-on-surface hover:text-error hover:bg-surface flex items-center justify-center transition-colors"
+          {products.map((item) => {
+            const isPizza = isPizzaItem(item.category, item.name);
+            return (
+              <motion.div variants={itemVariants} key={item.id} className="group relative rounded-2xl bg-surface-container-low overflow-hidden border border-surface-container transition-all hover:border-primary-container/50 shadow-sm hover:shadow-xl hover:shadow-primary-container/5 flex flex-col">
+                <div 
+                  onClick={() => isPizza && handleAction(item)}
+                  className={`relative w-full aspect-[4/3] bg-surface-container-lowest overflow-hidden ${isPizza ? 'cursor-pointer' : ''}`}
                 >
-                  <span className="material-symbols-outlined text-[20px]">favorite</span>
-                </motion.button>
-              </div>
-              <div className="p-space-md flex flex-col flex-1">
-                <div className="flex justify-between items-start mb-space-xs gap-4">
-                  <h3 className="font-headline-sm text-on-surface group-hover:text-primary-container transition-colors">{item.name}</h3>
-                  <div className="font-price-tag text-primary-container text-right whitespace-nowrap">Rs. {item.price?.toLocaleString()}</div>
-                </div>
-                <p className="font-body-sm text-on-surface-variant mb-space-md line-clamp-2">{item.description}</p>
-                <div className="mt-auto flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-on-surface-variant text-sm">
-                    <span className="material-symbols-outlined text-[16px] text-primary-container">star</span> 4.9
-                  </div>
+                  <img alt={item.name} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" src={item.image}/>
                   <motion.button 
-                    whileHover={{ scale: 1.05 }} 
-                    whileTap={{ scale: 0.95 }} 
-                    onClick={() => {
-                      addToCart({
-                        id: item.id,
-                        name: item.name,
-                        price: item.price,
-                        image: item.image
-                      });
+                    whileHover={{ scale: 1.1 }} 
+                    whileTap={{ scale: 0.9 }} 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currentWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+                      if (!currentWishlist.some((i: any) => i.id === item.id)) {
+                        currentWishlist.push(item);
+                        localStorage.setItem('wishlist', JSON.stringify(currentWishlist));
+                        window.dispatchEvent(new Event('wishlist:add'));
+                      }
                     }} 
-                    className="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md transition-colors flex items-center gap-2"
+                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface/80 backdrop-blur-sm text-on-surface hover:text-error hover:bg-surface flex items-center justify-center transition-colors z-10"
                   >
-                    <span>Add</span>
-                    <span className="material-symbols-outlined text-[18px]">add</span>
+                    <span className="material-symbols-outlined text-[20px]">favorite</span>
                   </motion.button>
+                  {isPizza && (
+                    <span className="absolute bottom-3 left-3 bg-[#FFD700] text-black text-[10px] font-black px-2.5 py-1 uppercase tracking-widest shadow-md">
+                      3 Sizes Available
+                    </span>
+                  )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+                <div className="p-space-md flex flex-col flex-1">
+                  <div className="flex justify-between items-start mb-space-xs gap-4">
+                    <h3 
+                      onClick={() => isPizza && handleAction(item)}
+                      className={`font-headline-sm text-on-surface group-hover:text-primary-container transition-colors ${isPizza ? 'cursor-pointer' : ''}`}
+                    >
+                      {item.name}
+                    </h3>
+                    <div className="font-price-tag text-primary-container text-right whitespace-nowrap">
+                      {isPizza && <span className="text-xs text-on-surface-variant font-normal mr-1">from</span>}
+                      Rs. {item.price?.toLocaleString()}
+                    </div>
+                  </div>
+                  <p className="font-body-sm text-on-surface-variant mb-space-md line-clamp-2">{item.description}</p>
+                  <div className="mt-auto flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-on-surface-variant text-sm">
+                      <span className="material-symbols-outlined text-[16px] text-primary-container">star</span> 4.9
+                    </div>
+                    <motion.button 
+                      whileHover={{ scale: 1.05 }} 
+                      whileTap={{ scale: 0.95 }} 
+                      onClick={() => handleAction(item)} 
+                      className="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md transition-colors flex items-center gap-2"
+                    >
+                      <span>{isPizza ? 'Choose Size' : 'Add'}</span>
+                      <span className="material-symbols-outlined text-[18px]">
+                        {isPizza ? 'straighten' : 'add'}
+                      </span>
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
         
         <motion.div
@@ -141,6 +183,23 @@ export default function FeaturedMenu() {
           </Link>
         </motion.div>
       </div>
+
+      <PizzaSizeModal
+        pizza={selectedPizza}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedPizza(null);
+        }}
+        onAddToCart={(selected) => {
+          addToCart({
+            id: selected.id,
+            name: selected.name,
+            price: selected.price,
+            image: selected.image
+          });
+        }}
+      />
     </section>
   );
 }

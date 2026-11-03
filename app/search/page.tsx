@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../lib/supabase';
 import { useCart } from '../../components/CartContext';
 import { Loader2 } from 'lucide-react';
+import { isPizzaItem } from '../../lib/pizza-sizes';
+import PizzaSizeModal, { PizzaItemForModal } from '../../components/ui/PizzaSizeModal';
 
 interface SearchMenuItem {
   id: string;
@@ -20,6 +22,7 @@ export default function SearchPage() {
   const [results, setResults] = useState<SearchMenuItem[]>([]);
   const [allItems, setAllItems] = useState<SearchMenuItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedPizza, setSelectedPizza] = useState<PizzaItemForModal | null>(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -149,23 +152,50 @@ export default function SearchPage() {
                   </div>
                   <button
                     onClick={() => {
-                      addToCart({
-                        id: item.id,
-                        name: item.name,
-                        price: item.price,
-                        image: item.image
-                      });
+                      if (isPizzaItem(item.category, item.name)) {
+                        setSelectedPizza({
+                          id: item.id,
+                          name: item.name,
+                          price: item.price,
+                          description: item.description,
+                          image: item.image,
+                          category: item.category
+                        });
+                      } else {
+                        addToCart({
+                          id: item.id,
+                          name: item.name,
+                          price: item.price,
+                          image: item.image
+                        });
+                      }
                     }}
                     className="w-full py-3.5 bg-[#FFD700] text-black font-black uppercase tracking-widest rounded-xl hover:bg-white transition-colors flex items-center justify-center gap-2"
                   >
-                    <span>Add to Order</span>
-                    <span className="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                    <span>{isPizzaItem(item.category, item.name) ? 'Select Size' : 'Add to Order'}</span>
+                    <span className="material-symbols-outlined text-[18px]">
+                      {isPizzaItem(item.category, item.name) ? 'straighten' : 'add_shopping_cart'}
+                    </span>
                   </button>
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
         )}
+
+        <PizzaSizeModal
+          pizza={selectedPizza}
+          isOpen={!!selectedPizza}
+          onClose={() => setSelectedPizza(null)}
+          onAddToCart={(item) => {
+            addToCart({
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              image: item.image
+            });
+          }}
+        />
       </div>
     </div>
   );

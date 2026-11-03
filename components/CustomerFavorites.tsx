@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import { useCart } from './CartContext';
+import { isPizzaItem } from '../lib/pizza-sizes';
+import PizzaSizeModal, { PizzaItemForModal } from './ui/PizzaSizeModal';
 
 interface FavoriteItem {
   id: string;
@@ -15,6 +17,7 @@ interface FavoriteItem {
 
 export default function CustomerFavorites() {
   const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+  const [selectedPizza, setSelectedPizza] = useState<PizzaItemForModal | null>(null);
   const { addToCart } = useCart();
   const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -143,23 +146,50 @@ export default function CustomerFavorites() {
                   whileHover={{ scale: 1.1 }} 
                   whileTap={{ scale: 0.9 }} 
                   onClick={() => {
-                    addToCart({
-                      id: item.id,
-                      name: item.name,
-                      price: item.price,
-                      image: item.image
-                    });
+                    if (isPizzaItem(item.categoryName, item.name)) {
+                      setSelectedPizza({
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        description: item.description,
+                        image: item.image,
+                        category: item.categoryName
+                      });
+                    } else {
+                      addToCart({
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        image: item.image
+                      });
+                    }
                   }}
                   className="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:bg-secondary-container transition-colors" 
                   type="button" 
-                  aria-label="Add to cart"
+                  aria-label={isPizzaItem(item.categoryName, item.name) ? "Select pizza size" : "Add to cart"}
                 >
-                  <span className="material-symbols-outlined text-[18px]">add</span>
+                  <span className="material-symbols-outlined text-[18px]">
+                    {isPizzaItem(item.categoryName, item.name) ? "straighten" : "add"}
+                  </span>
                 </motion.button>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
+        <PizzaSizeModal
+          pizza={selectedPizza}
+          isOpen={!!selectedPizza}
+          onClose={() => setSelectedPizza(null)}
+          onAddToCart={(item) => {
+            addToCart({
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              image: item.image
+            });
+          }}
+        />
       </motion.div>
     </section>
   );

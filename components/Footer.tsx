@@ -9,10 +9,10 @@ export default function Footer() {
     <footer className="w-full bg-black text-[#e5e2e1] pt-32 pb-8 border-t border-gray-900 overflow-hidden relative">
       
       {/* Background massive 'SWIFTBITE' text */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none opacity-5 select-none">
-        <h1 className="text-[25vw] font-[family-name:var(--font-epilogue)] font-black whitespace-nowrap leading-none tracking-tighter text-transparent bg-clip-text" style={{ WebkitTextStroke: '2px #FFD700' }}>
+      <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none opacity-5 select-none" aria-hidden="true">
+        <span className="text-[25vw] font-[family-name:var(--font-epilogue)] font-black whitespace-nowrap leading-none tracking-tighter text-transparent bg-clip-text" style={{ WebkitTextStroke: '2px #FFD700' }}>
           SWIFTBITE SWIFTBITE
-        </h1>
+        </span>
       </div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -58,10 +58,10 @@ export default function Footer() {
 
           <div className="flex flex-col gap-6">
             <h4 className="text-[#FFD700] mb-2">Service</h4>
-            <Link className="text-gray-500 hover:text-white transition-colors" href="/cart">Order Online</Link>
+            <Link className="text-gray-500 hover:text-white transition-colors" href="/order-online">Order Online</Link>
             <Link className="text-gray-500 hover:text-white transition-colors" href="/cart">Track Order</Link>
-            <Link className="text-gray-500 hover:text-white transition-colors" href="/contact">Support</Link>
-            <Link className="text-gray-500 hover:text-white transition-colors" href="/menu">Allergens</Link>
+            <Link className="text-gray-500 hover:text-white transition-colors" href="/contact">Support &amp; Location</Link>
+            <Link className="text-gray-500 hover:text-white transition-colors" href="/menu">Full Menu</Link>
           </div>
 
           <div className="flex flex-col gap-6">
